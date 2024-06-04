@@ -7,6 +7,7 @@ let
   social = import ./templates/social.nix {inherit pkgs;};
   socialLower = import ./templates/socialLower.nix {inherit pkgs;};
   fun = import ./templates/fun.nix {inherit pkgs;};
+  pentest = import ./templates/pentest.nix {inherit pkgs;};
 in
 
 with pkgs;
@@ -17,5 +18,6 @@ programming ++
 util ++
 social ++ 
 socialLower ++ 
-fun
-
+fun ++
+pentest ++
+[]

@@ -139,17 +139,29 @@ in
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+
     pkgs.veracrypt
+
     pkgs.gamemode
+
     git
     nodejs
     yarn
+
+    usbutils
+    v4l-utils
+
     parted
     gparted
     pkgs.ntfs3g
+
     piper
+    openrgb-with-all-plugins
+
     pv
     pigz
+
+    ffmpeg_7-full
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
