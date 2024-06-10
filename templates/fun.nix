@@ -1,6 +1,6 @@
 { pkgs }: with pkgs; [
   neofetch
-  blender
+  blender-hip
 
   # Exercism
   pkgs.exercism
