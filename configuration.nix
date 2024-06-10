@@ -162,6 +162,7 @@ in
     pigz
 
     ffmpeg_7-full
+    libGL
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
