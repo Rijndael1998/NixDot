@@ -6,4 +6,6 @@
   lm_sensors
   htop
   btop
+  ventoy-full
+  filelight
 ]
