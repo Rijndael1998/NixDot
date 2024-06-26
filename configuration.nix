@@ -116,7 +116,7 @@ in
   users.users.r = {
     isNormalUser = true;
     description = "Rin";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "plugdev" "uucp" "lock" ];
     packages = rPackages;
   };
 
@@ -164,6 +164,14 @@ in
     ffmpeg_7-full
     libGL
   ];
+
+  # espurino
+  services.udev.extraRules = ''
+ATTRS{idProduct}=="5740", ATTRS{idVendor}=="0483", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
+ATTRS{idProduct}=="1015", ATTRS{idVendor}=="1366", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
+ATTRS{idProduct}=="520f", ATTRS{idVendor}=="1915", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
+ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
+  '';
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
