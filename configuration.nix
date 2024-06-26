@@ -116,7 +116,14 @@ in
   users.users.r = {
     isNormalUser = true;
     description = "Rin";
-    extraGroups = [ "networkmanager" "wheel" "plugdev" "uucp" "lock" ];
+    extraGroups = [ 
+      "networkmanager"
+      "wheel"
+      "plugdev"
+      "uucp"
+      "lock"
+      "libvirtd"
+     ];
     packages = rPackages;
   };
 
@@ -172,6 +179,11 @@ ATTRS{idProduct}=="1015", ATTRS{idVendor}=="1366", ENV{ID_MM_DEVICE_IGNORE}="1",
 ATTRS{idProduct}=="520f", ATTRS{idVendor}=="1915", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
 ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
   '';
+
+  # virtbox
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
