@@ -11,5 +11,5 @@
   kdePackages.kdenlive
 
   # 🏴‍☠️
-  transmission
+  transmission-qt
 ]
