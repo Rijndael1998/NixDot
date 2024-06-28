@@ -8,4 +8,7 @@
 
   # scripting...
   python3
+
+  # android studio
+  pkgs.android-studio
 ]
