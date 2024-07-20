@@ -4,7 +4,9 @@
 
 { config, pkgs, ... }:
 
-
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in
 let
   # Import user's specific package list
   rPackages = import ./r.nix { inherit pkgs; };
