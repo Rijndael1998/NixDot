@@ -5,11 +5,11 @@
 { config, pkgs, ... }:
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-  hostname = import ./hostname.nix;
 in
 let
   # Import user's specific package list
   rPackages = import ./r.nix { inherit pkgs; inherit unstable; };
+
 in
 {
   imports =
@@ -25,6 +25,22 @@ in
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+
+  # Custom hardware (nvidia)
+  services.xserver.videoDrivers = [ "nvidia" ];
+  #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
+  hardware.nvidia.prime = {
+    # Sync Mode [Optimus PRIME Option B: Sync Mode](https://nixos.wiki/wiki/Nvidia) 
+    sync.enable = true;
+
+ #   reverseSync.enable = true;
+    allowExternalGpu = true;
+
+    # Make sure to use the correct Bus ID values for your system!
+    #intelBusId = "PCI:0:2:0";
+    amdgpuBusId = "PCI:7:0:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
 
   # ssh
   services.openssh.enable = true;
@@ -72,7 +88,7 @@ in
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
 
-  networking.hostName = hostname; # Define your hostname.
+  networking.hostName = "Omen"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
