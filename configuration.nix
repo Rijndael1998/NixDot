@@ -9,7 +9,7 @@ let
 in
 let
   # Import user's specific package list
-  rPackages = import ./r.nix { inherit pkgs; };
+  rPackages = import ./r.nix { inherit pkgs; inherit unstable; };
   hostname = import ./hostname.nix { };
 in
 {

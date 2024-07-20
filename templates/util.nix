@@ -1,7 +1,7 @@
-{ pkgs }: with pkgs; [
+{ pkgs, unstable }: with pkgs; [
   pkgs.nextcloud-client
   mc
-  openrgb
+  unstable.openrgb-with-all-plugins
   psensor
   lm_sensors
   htop
