@@ -170,6 +170,8 @@ in
 
     ffmpeg_7-full
     libGL
+
+    vdhcoapp
   ];
 
   # espurino

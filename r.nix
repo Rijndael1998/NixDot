@@ -8,6 +8,7 @@ let
   socialLower = import ./templates/socialLower.nix {inherit pkgs;};
   fun = import ./templates/fun.nix {inherit pkgs;};
   pentest = import ./templates/pentest.nix {inherit pkgs;};
+  finance = import ./templates/finance.nix {inherit pkgs;};
 in
 
 with pkgs;
@@ -20,4 +21,5 @@ social ++
 socialLower ++ 
 fun ++
 pentest ++
+finance ++
 []
