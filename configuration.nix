@@ -15,7 +15,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       # Include custom hardware
-      # ./custom-hardware.nix
+      ./custom-hardware.nix
     ];
 
   hardware.opengl = {
