@@ -3,13 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-  hostname = import ./hostname.nix;
-in
+
+
 let
   # Import user's specific package list
-  rPackages = import ./r.nix { inherit pkgs; inherit unstable; };
+  rPackages = import ./r.nix { inherit pkgs; };
 in
 {
   imports =
@@ -23,56 +21,27 @@ in
     driSupport32Bit = true;
   };
 
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-
   # ssh
   services.openssh.enable = true;
   services.openssh.settings.X11Forwarding = true;
 
-  hardware.nvidia = {
-    # Modesetting is required.
-    modesetting.enable = true;
+  # open rgb (oooo, pretty lights)
+  services.hardware.openrgb.enable = true;
 
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
-    # of just the bare essentials.
-    powerManagement.enable = false;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
-
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-    # Only available from driver 515.43.04+
-    # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
-
-    # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
+  # cpu temps
+  services.auto-cpufreq.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # make sure my 100mb partition doesn't get clogged
-  boot.loader.grub.configurationLimit = 10;
+  # boot.loader.grub.configurationLimit = 10;
 
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
 
-  networking.hostName = hostname; # Define your hostname.
+  networking.hostName = "Smol"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -104,16 +73,14 @@ in
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  programs.kdeconnect.enable = true;
-
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "gb";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Configure console keymap
@@ -149,7 +116,14 @@ in
   users.users.r = {
     isNormalUser = true;
     description = "Rin";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ 
+      "networkmanager"
+      "wheel"
+      "plugdev"
+      "uucp"
+      "lock"
+      "libvirtd"
+     ];
     packages = rPackages;
   };
 
@@ -161,8 +135,8 @@ in
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "r";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "r";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -172,14 +146,48 @@ in
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+
     pkgs.veracrypt
+
     pkgs.gamemode
+
     git
     nodejs
+    yarn
+
+    usbutils
+    v4l-utils
+
     parted
     gparted
     pkgs.ntfs3g
+
+    piper
+    openrgb-with-all-plugins
+
+    pv
+    pigz
+
+    ffmpeg_7-full
+    libGL
+
+    vdhcoapp
   ];
+
+  # espurino
+  services.udev.extraRules = ''
+ATTRS{idProduct}=="5740", ATTRS{idVendor}=="0483", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
+ATTRS{idProduct}=="1015", ATTRS{idVendor}=="1366", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
+ATTRS{idProduct}=="520f", ATTRS{idVendor}=="1915", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
+ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
+  '';
+
+  # virtbox
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
+  # bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
