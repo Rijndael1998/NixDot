@@ -8,11 +8,14 @@
 let
   # Import user's specific package list
   rPackages = import ./r.nix { inherit pkgs; };
+  hostname = import ./hostname.nix { };
 in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # Include custom hardware
+      # ./custom-hardware.nix
     ];
 
   hardware.opengl = {
@@ -41,7 +44,7 @@ in
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
 
-  networking.hostName = "Smol"; # Define your hostname.
+  networking.hostName = hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
