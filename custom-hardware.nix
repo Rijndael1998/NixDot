@@ -19,7 +19,7 @@
     amdgpuBusId = "PCI:7:0:0";
     nvidiaBusId = "PCI:1:0:0";
   };
-  
+
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
@@ -51,5 +51,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  
+  # make sure my 100mb partition doesn't get clogged
+  boot.loader.grub.configurationLimit = 10
+
   }
