@@ -128,6 +128,7 @@ in
       "uucp"
       "lock"
       "libvirtd"
+      "docker"
      ];
     packages = rPackages;
   };
@@ -195,6 +196,10 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
 
   # bluetooth
   hardware.bluetooth.enable = true; # enables support for Bluetooth
+
+  # Docker
+  virtualisation.docker.enable = true;
+  
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
