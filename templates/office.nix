@@ -1,6 +1,6 @@
-{ pkgs }: with pkgs; [
+{ pkgs, unstable }: with pkgs; [
   pkgs.libreoffice-fresh
-  pkgs.joplin-desktop
+  unstable.joplin-desktop
   pkgs.obs-studio
   pkgs.gimp
 ]
