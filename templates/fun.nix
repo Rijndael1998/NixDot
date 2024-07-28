@@ -1,6 +1,6 @@
 { pkgs }: with pkgs; [
   neofetch
-  blender-hip
+  (pkgs.callPackage ../custom-packages/blender.nix { })
 
   # Exercism
   pkgs.exercism
