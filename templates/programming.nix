@@ -1,7 +1,6 @@
 { pkgs }: with pkgs; [
   # versioning
-  gitkraken
-  git-cola
+  git
 
   # browser
   ungoogled-chromium
@@ -11,4 +10,7 @@
 
   # android studio
   pkgs.android-studio
+
+  # zed
+  zed-editor
 ]

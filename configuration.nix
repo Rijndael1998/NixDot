@@ -80,7 +80,8 @@ in
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  programs.kdeconnect.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -180,6 +181,12 @@ in
     vdhcoapp
 
     android-tools
+
+    # Spelling
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
   ];
 
   # espurino
