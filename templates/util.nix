@@ -8,4 +8,5 @@
   btop
   ventoy-full
   filelight
+  killall
 ]
