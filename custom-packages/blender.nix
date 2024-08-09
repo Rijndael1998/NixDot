@@ -32,7 +32,7 @@ let
       };
     };
 
-  blenderWithPySlvs = pkgs.blender.withPackages (p: [ (py-slvs p) ]);
+  blenderWithPySlvs = pkgs.blender-hip.withPackages (p: [ (py-slvs p) ]);
   blender = blenderWithPySlvs.overrideAttrs (oldAttrs: {
     pname = "blender";
   });
