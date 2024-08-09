@@ -207,6 +207,12 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # Docker
   virtualisation.docker.enable = true;
   
+  # Git
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+  };
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
