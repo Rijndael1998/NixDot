@@ -8,48 +8,27 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "uas" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/92cec9b1-3f1b-48cf-b029-2cdfc3965cc8";
+    { device = "/dev/disk/by-uuid/4549521d-35cb-45da-aff8-5c63c56a21b2";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-22c16ce7-b1aa-44be-b170-ec7aff45a34c".device = "/dev/disk/by-uuid/22c16ce7-b1aa-44be-b170-ec7aff45a34c";
+  boot.initrd.luks.devices."luks-daeb1cc4-8a25-45fd-9714-f6f908f470f9".device = "/dev/disk/by-uuid/daeb1cc4-8a25-45fd-9714-f6f908f470f9";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/092A-DF57";
+    { device = "/dev/disk/by-uuid/5E1B-3DEB";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  fileSystems."/mnt/Internal 500GB SSD" =
-    { device = "/dev/disk/by-uuid/26de236d-af94-4e7f-aa70-18687e53ba65";
-      fsType = "ext4";
-      options = [ "nofail" ];
-    };
-
-  boot.initrd.luks.devices."luks-443e8f4c-4da7-4eaa-ba32-283a7fa004d8" = 
-    {
-      device = "/dev/disk/by-uuid/443e8f4c-4da7-4eaa-ba32-283a7fa004d8";
-      # keyFile = "/mnt-root/etc/luks-keys/luks-443e8f4c-4da7-4eaa-ba32-283a7fa004d8";
-      # options = [ "nofail" ];
-    };
-
-  fileSystems."/mnt/External SSD" =
-    { device = "/dev/disk/by-uuid/97c3f474-0ac0-4b18-b9cf-86c23c59190d";
-      fsType = "ext4";
-      options = [ "nofail" ];
-    };
-
-  boot.initrd.luks.devices."luks-f20e3e7c-c606-409f-b68a-93f0d4e33b6a" =
-    {
-      device = "/dev/disk/by-uuid/f20e3e7c-c606-409f-b68a-93f0d4e33b6a";
-      # keyFile = "/mnt-root/etc/luks-keys/luks-f20e3e7c-c606-409f-b68a-93f0d4e33b6a";
-      # options = [ "nofail" ];
+  fileSystems."/root/.cache/doc" =
+    { device = "portal";
+      fsType = "fuse.portal";
     };
 
   swapDevices = [ ];
@@ -59,10 +38,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.virbr0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
