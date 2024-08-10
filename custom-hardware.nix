@@ -52,6 +52,6 @@
   };
 
   # make sure my 100mb partition doesn't get clogged
-  boot.loader.grub.configurationLimit = 10
+  boot.loader.grub.configurationLimit = 10;
+}
 
-  }
