@@ -12,5 +12,5 @@
   pkgs.android-studio
 
   # zed
-  zed-editor
+  # zed-editor
 ]

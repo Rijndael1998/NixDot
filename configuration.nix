@@ -94,6 +94,17 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  services.printing.drivers = [
+    pkgs.gutenprint
+    pkgs.gutenprintBin
+    pkgs.canon-capt
+  ];
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -187,6 +198,9 @@ in
     aspellDicts.en
     aspellDicts.en-computers
     aspellDicts.en-science
+
+    # godot
+    godot_4
   ];
 
   # espurino
@@ -231,7 +245,7 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
