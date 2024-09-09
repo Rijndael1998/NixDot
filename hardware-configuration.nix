@@ -26,31 +26,31 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  fileSystems."/mnt/Internal 500GB SSD" =
-    { device = "/dev/disk/by-uuid/26de236d-af94-4e7f-aa70-18687e53ba65";
-      fsType = "ext4";
-      options = [ "nofail" ];
-    };
+#  fileSystems."/mnt/Internal 500GB SSD" =
+#    { device = "/dev/disk/by-uuid/26de236d-af94-4e7f-aa70-18687e53ba65";
+#      fsType = "ext4";
+#      options = [ "nofail" ];
+#    };
 
-  boot.initrd.luks.devices."luks-443e8f4c-4da7-4eaa-ba32-283a7fa004d8" = 
-    {
-      device = "/dev/disk/by-uuid/443e8f4c-4da7-4eaa-ba32-283a7fa004d8";
-      # keyFile = "/mnt-root/etc/luks-keys/luks-443e8f4c-4da7-4eaa-ba32-283a7fa004d8";
-      # options = [ "nofail" ];
-    };
+#  boot.initrd.luks.devices."luks-443e8f4c-4da7-4eaa-ba32-283a7fa004d8" = 
+#    {
+#      device = "/dev/disk/by-uuid/443e8f4c-4da7-4eaa-ba32-283a7fa004d8";
+#      # keyFile = "/mnt-root/etc/luks-keys/luks-443e8f4c-4da7-4eaa-ba32-283a7fa004d8";
+#      # options = [ "nofail" ];
+#    };
 
-  fileSystems."/mnt/External SSD" =
-    { device = "/dev/disk/by-uuid/97c3f474-0ac0-4b18-b9cf-86c23c59190d";
-      fsType = "ext4";
-      options = [ "nofail" ];
-    };
+#  fileSystems."/mnt/External SSD" =
+#    { device = "/dev/disk/by-uuid/97c3f474-0ac0-4b18-b9cf-86c23c59190d";
+#      fsType = "ext4";
+#      options = [ "nofail" ];
+#    };
 
-  boot.initrd.luks.devices."luks-f20e3e7c-c606-409f-b68a-93f0d4e33b6a" =
-    {
-      device = "/dev/disk/by-uuid/f20e3e7c-c606-409f-b68a-93f0d4e33b6a";
-      # keyFile = "/mnt-root/etc/luks-keys/luks-f20e3e7c-c606-409f-b68a-93f0d4e33b6a";
-      # options = [ "nofail" ];
-    };
+#  boot.initrd.luks.devices."luks-f20e3e7c-c606-409f-b68a-93f0d4e33b6a" =
+#    {
+#      device = "/dev/disk/by-uuid/f20e3e7c-c606-409f-b68a-93f0d4e33b6a";
+#      # keyFile = "/mnt-root/etc/luks-keys/luks-f20e3e7c-c606-409f-b68a-93f0d4e33b6a";
+#      # options = [ "nofail" ];
+#    };
 
   swapDevices = [ ];
 

@@ -26,12 +26,17 @@ in
     driSupport32Bit = true;
   };
 
+  hardware.sane.enable = true; # enables support for SANE scanners
+
   # ssh
   services.openssh.enable = true;
   services.openssh.settings.X11Forwarding = true;
 
   # open rgb (oooo, pretty lights)
   services.hardware.openrgb.enable = true;
+
+  # piper
+  services.ratbagd.enable = true;
 
   # cpu temps
   services.auto-cpufreq.enable = true;
@@ -141,6 +146,8 @@ in
       "lock"
       "libvirtd"
       "docker"
+      "scanner"
+      "lp"
      ];
     packages = rPackages;
   };
@@ -201,6 +208,9 @@ in
 
     # godot
     godot_4
+
+    # mining
+    unstable.xmrig
   ];
 
   # espurino
@@ -227,6 +237,26 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
     lfs.enable = true;
   };
 
+  # enable local ai
+  services.ollama.enable = true;
+
+  # mining
+  services.xmrig = {
+    enable = true; # i start and stop this when i please
+    package = unstable.xmrig;
+    settings = {
+      autosave = true;
+      cpu = true;
+      opencl = false;
+      cuda = false;
+      pools = [{
+        url = "monero.lan";
+      }];
+    };
+  };
+
+  # making it possible to unfuck my system offline
+  system.includeBuildDependencies = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
