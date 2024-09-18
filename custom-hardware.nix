@@ -1,13 +1,13 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, modulesPath,  ... }:
 
 {
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  config.hardware.bluetooth.enable = true; # enables support for Bluetooth
+  config.hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
   # Custom hardware (nvidia)
-  services.xserver.videoDrivers = [ "nvidia" ];
+  config.services.xserver.videoDrivers = [ "nvidia" ];
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
-  hardware.nvidia.prime = {
+  config.hardware.nvidia.prime = {
     # Sync Mode [Optimus PRIME Option B: Sync Mode](https://nixos.wiki/wiki/Nvidia) 
     sync.enable = true;
 
@@ -20,7 +20,7 @@
     nvidiaBusId = "PCI:1:0:0";
   };
 
-  hardware.nvidia = {
+  config.hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
 
@@ -52,6 +52,8 @@
   };
 
   # make sure my 100mb partition doesn't get clogged
-  boot.loader.grub.configurationLimit = 10;
-}
+  config.boot.loader.grub.configurationLimit = 10;
 
+  # ollama 
+  config.services.ollama.acceleration = "cuda"; 
+}

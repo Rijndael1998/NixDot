@@ -26,6 +26,8 @@ in
     driSupport32Bit = true;
   };
 
+  hardware.sane.enable = true; # enables support for SANE scanners
+
   # ssh
   services.openssh.enable = true;
   services.openssh.settings.X11Forwarding = true;
@@ -33,15 +35,15 @@ in
   # open rgb (oooo, pretty lights)
   services.hardware.openrgb.enable = true;
 
+  # piper
+  services.ratbagd.enable = true;
+
   # cpu temps
   services.auto-cpufreq.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # make sure my 100mb partition doesn't get clogged
-  # boot.loader.grub.configurationLimit = 10;
 
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
@@ -94,6 +96,17 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  services.printing.drivers = [
+    pkgs.gutenprint
+    pkgs.gutenprintBin
+    pkgs.canon-capt
+  ];
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -130,6 +143,8 @@ in
       "lock"
       "libvirtd"
       "docker"
+      "scanner"
+      "lp"
      ];
     packages = rPackages;
   };
@@ -187,6 +202,12 @@ in
     aspellDicts.en
     aspellDicts.en-computers
     aspellDicts.en-science
+
+    # godot
+    godot_4
+
+    # mining
+    unstable.xmrig
   ];
 
   # espurino
@@ -213,6 +234,26 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
     lfs.enable = true;
   };
 
+  # enable local ai
+  services.ollama.enable = true;
+
+  # mining
+  services.xmrig = {
+    enable = true; # i start and stop this when i please
+    package = unstable.xmrig;
+    settings = {
+      autosave = true;
+      cpu = true;
+      opencl = false;
+      cuda = false;
+      pools = [{
+        url = "baldy.ga";
+      }];
+    };
+  };
+
+  # making it possible to unfuck my system offline
+  system.includeBuildDependencies = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -228,10 +269,10 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22 80 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -240,5 +281,4 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
