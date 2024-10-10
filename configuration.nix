@@ -26,6 +26,11 @@ in
     driSupport32Bit = true;
   };
 
+#  services.klipper = {
+#    enable = true;
+#    
+#  };
+
   hardware.sane.enable = true; # enables support for SANE scanners
 
   # ssh
@@ -152,6 +157,17 @@ in
     packages = rPackages;
   };
 
+  # guest profile
+  users.users.guest = {
+    isNormalUser = true;
+    description = "Guest Profile";
+    extraGroups = [ 
+      "networkmanager"
+      "lp" # printer
+     ];
+    packages = rPackages;
+  };
+
   users.users.root = {
     packages = with pkgs; [
       lshw
@@ -211,6 +227,10 @@ in
 
     # mining
     unstable.xmrig
+
+    # others
+    p7zip
+    wineWowPackages.waylandFull
   ];
 
   # espurino
@@ -250,7 +270,7 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
       opencl = false;
       cuda = false;
       pools = [{
-        url = "monero.lan";
+        url = "baldy.ga";
       }];
     };
   };

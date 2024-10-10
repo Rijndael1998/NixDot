@@ -9,4 +9,5 @@
   ventoy-full
   filelight
   killall
+  clinfo
 ]
