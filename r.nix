@@ -6,7 +6,7 @@ let
   util = import ./templates/util.nix {inherit pkgs;inherit unstable;};
   social = import ./templates/social.nix {inherit pkgs;};
   socialLower = import ./templates/socialLower.nix {inherit pkgs;};
-  fun = import ./templates/fun.nix {inherit pkgs;};
+  fun = import ./templates/fun.nix {inherit pkgs; inherit unstable;};
   pentest = import ./templates/pentest.nix {inherit pkgs;};
   finance = import ./templates/finance.nix {inherit pkgs;};
 in

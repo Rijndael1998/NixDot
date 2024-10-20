@@ -1,4 +1,4 @@
-{ pkgs }: with pkgs; [
+{ pkgs, unstable }: with pkgs; [
   neofetch
   (pkgs.callPackage ../custom-packages/blender.nix { })
 
@@ -12,4 +12,13 @@
 
   # 🏴‍☠️
   transmission-qt
+
+  # 3d printing
+  orca-slicer
+
+  # epic games
+  heroic
+
+  # minecraft
+  prismlauncher
 ]
