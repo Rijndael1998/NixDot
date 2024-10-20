@@ -225,6 +225,9 @@ in
     # mining
     unstable.xmrig
 
+    # Zero trust
+    unstable.netbird-ui
+
     # others
     p7zip
     wineWowPackages.waylandFull
@@ -274,6 +277,10 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
 
   # making it possible to unfuck my system offline
   system.includeBuildDependencies = true;
+
+  # netbird
+  services.netbird.enable = true;
+  services.netbird.package = unstable.netbird;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
