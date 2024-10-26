@@ -33,6 +33,17 @@ in
 
   hardware.sane.enable = true; # enables support for SANE scanners
 
+  # opengl extras
+  hardware.opengl.extraPackages = with pkgs; [
+    amdvlk
+    rocmPackages.clr.icd # opencl
+  ];
+ 
+  hardware.opengl.extraPackages32 = with pkgs; [
+    driversi686Linux.amdvlk
+  ];
+
+
   # ssh
   services.openssh.enable = true;
   services.openssh.settings.X11Forwarding = true;
@@ -189,20 +200,25 @@ in
 
     pkgs.gamemode
 
+    # basics for web
     git
     nodejs
     yarn
 
+    # lsusb and stuff
     usbutils
     v4l-utils
 
+    # partitioning
     parted
     gparted
     pkgs.ntfs3g
 
+    # pretty lights & mouse software
     piper
     openrgb-with-all-plugins
 
+    # utils
     pv
     pigz
 
@@ -231,6 +247,12 @@ in
     # others
     p7zip
     wineWowPackages.waylandFull
+
+    # opencl
+    clinfo
+
+    openh264
+    x264
   ];
 
   # espurino
