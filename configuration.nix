@@ -35,12 +35,12 @@ in
 
   # opengl extras
   hardware.opengl.extraPackages = with pkgs; [
-    amdvlk
+    amdvlk # this is fine but consider actually using built in graphics
     rocmPackages.clr.icd # opencl
   ];
  
   hardware.opengl.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
+    driversi686Linux.amdvlk # see above
   ];
 
 
