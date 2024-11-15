@@ -200,6 +200,9 @@ in
 
     pkgs.gamemode
 
+    # dialog box access for kde
+    kdePackages.kdialog
+
     # basics for web
     git
     nodejs
