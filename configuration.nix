@@ -33,17 +33,6 @@ in
 
   hardware.sane.enable = true; # enables support for SANE scanners
 
-  # opengl extras
-  hardware.opengl.extraPackages = with pkgs; [
-    amdvlk # this is fine but consider actually using built in graphics
-    rocmPackages.clr.icd # opencl
-  ];
- 
-  hardware.opengl.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk # see above
-  ];
-
-
   # ssh
   services.openssh.enable = true;
   services.openssh.settings.X11Forwarding = true;
