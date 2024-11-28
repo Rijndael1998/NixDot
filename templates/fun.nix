@@ -11,7 +11,7 @@
   kdePackages.kdenlive
 
   # 🏴‍☠️
-  transmission-qt
+  transmission_4-qt
 
   # 3d printing
   orca-slicer

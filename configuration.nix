@@ -20,7 +20,7 @@ in
       ./custom-hardware.nix
     ];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     #driSupport = true;
     #driSupport32Bit = true;
@@ -43,12 +43,12 @@ in
   hardware.sane.enable = true; # enables support for SANE scanners
 
   # opengl extras
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
     amdvlk
     rocmPackages.clr.icd # opencl
   ];
  
-  hardware.opengl.extraPackages32 = with pkgs; [
+  hardware.graphics.extraPackages32 = with pkgs; [
     driversi686Linux.amdvlk
   ];
 
