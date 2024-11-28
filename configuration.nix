@@ -52,6 +52,15 @@ in
     driversi686Linux.amdvlk
   ];
 
+  services.syncthing = {
+    enable = true;
+    group = "users";
+    user = "r";
+    dataDir = "/run/media/r/External_SSD/Syncthing/";    # Default folder for new synced folders
+    configDir = "/run/media/r/External_SSD/Syncthing/.config/syncthing";   # Folder for Syncthing's settings and keys
+  };
+
+
   # node red
   services.node-red.enable = true;
 
