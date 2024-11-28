@@ -22,8 +22,17 @@ in
 
   hardware.opengl = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    #driSupport = true;
+    #driSupport32Bit = true;
+  };
+
+  # dvb/tv
+  hardware.rtl-sdr.enable = true;
+
+  programs.nix-ld = {
+    enable = true;
+    package = pkgs.nix-ld;
+#    libraries = options.programs.nix-ld.libraries.default;
   };
 
 #  services.klipper = {
@@ -43,6 +52,8 @@ in
     driversi686Linux.amdvlk
   ];
 
+  # node red
+  services.node-red.enable = true;
 
   # ssh
   services.openssh.enable = true;
@@ -55,7 +66,7 @@ in
   services.ratbagd.enable = true;
 
   # cpu temps
-  services.auto-cpufreq.enable = true;
+  # services.auto-cpufreq.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -128,7 +139,7 @@ in
   ];
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -164,6 +175,7 @@ in
       "docker"
       "scanner"
       "lp"
+      "plugdev"
      ];
     packages = rPackages;
   };
@@ -256,6 +268,10 @@ in
 
     openh264
     x264
+
+    # sdr/tv/dvb
+    pkgs.rtl-sdr
+    gqrx
   ];
 
   # espurino
