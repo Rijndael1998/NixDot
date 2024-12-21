@@ -34,7 +34,7 @@
     ];
   })
 
-  pkgs.gnome.gnome-disk-utility
+  gnome-disk-utility
   vlc
   mpv
 ]

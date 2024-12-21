@@ -20,10 +20,21 @@ in
       ./custom-hardware.nix
     ];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    #driSupport = true;
+    #driSupport32Bit = true;
+  };
+
+  boot.loader.grub.memtest86.enable = true;
+
+  # dvb/tv
+  hardware.rtl-sdr.enable = true;
+
+  programs.nix-ld = {
+    enable = true;
+    package = pkgs.nix-ld;
+#    libraries = options.programs.nix-ld.libraries.default;
   };
 
 #  services.klipper = {
@@ -32,6 +43,17 @@ in
 #  };
 
   hardware.sane.enable = true; # enables support for SANE scanners
+
+  services.syncthing = {
+    enable = true;
+    group = "users";
+    user = "r";
+    dataDir = "/home/r/Syncthing/";    # Default folder for new synced folders
+    configDir = "/home/r/Syncthing/.config/syncthing";   # Folder for Syncthing's settings and keys
+  };
+
+  # node red
+  services.node-red.enable = true;
 
   # ssh
   services.openssh.enable = true;
@@ -44,7 +66,7 @@ in
   services.ratbagd.enable = true;
 
   # cpu temps
-  services.auto-cpufreq.enable = true;
+  # services.auto-cpufreq.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -114,7 +136,7 @@ in
   ];
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -150,6 +172,7 @@ in
       "docker"
       "scanner"
       "lp"
+      "plugdev"
      ];
     packages = rPackages;
   };
@@ -245,6 +268,10 @@ in
 
     openh264
     x264
+
+    # sdr/tv/dvb
+    pkgs.rtl-sdr
+    gqrx
   ];
 
   # espurino
@@ -310,8 +337,8 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 80 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22000 22 80 ];
+  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
 

@@ -2,7 +2,7 @@
   pkgs.nextcloud-client
   mc
   unstable.openrgb-with-all-plugins
-  psensor
+  #psensor
   lm_sensors
   htop
   btop
