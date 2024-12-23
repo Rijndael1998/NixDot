@@ -11,6 +11,6 @@
   # android studio
   pkgs.android-studio
 
-  # zed
-  # zed-editor
+  # code
+  vscode-fhs
 ]
