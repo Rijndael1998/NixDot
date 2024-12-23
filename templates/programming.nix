@@ -11,6 +11,6 @@
   # android studio
   pkgs.android-studio
 
-  # code
-  vscode-fhs
+  # vscodium
+  vscode.fhs
 ]
