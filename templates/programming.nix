@@ -6,7 +6,10 @@
   ungoogled-chromium
 
   # scripting...
-  python3
+  python312Full
+  python312Packages.opencv4
+  gtk2 #for cv2
+  qt5.full
 
   # android studio
   pkgs.android-studio
