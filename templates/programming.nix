@@ -16,4 +16,6 @@
 
   # vscodium
   vscode.fhs
+
+  godot_4-mono
 ]

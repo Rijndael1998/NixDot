@@ -250,9 +250,6 @@ in
     aspellDicts.en-computers
     aspellDicts.en-science
 
-    # godot
-    godot_4
-
     # mining
     unstable.xmrig
 
@@ -285,6 +282,9 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # virtbox
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+
+  # waydroid / android
+  virtualisation.waydroid.enable = true;
 
   # bluetooth
   hardware.bluetooth.enable = true; # enables support for Bluetooth
