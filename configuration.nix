@@ -36,7 +36,6 @@ in
     package = pkgs.nix-ld;
   };
 
-
   hardware.sane.enable = true; # enables support for SANE scanners
 
   services.syncthing = {
@@ -161,8 +160,16 @@ in
       "scanner"
       "lp"
       "plugdev"
+      "docker"
      ];
     packages = rPackages;
+  };
+
+  # docker
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
   };
 
   users.users.root = {
