@@ -303,7 +303,7 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
 
   # mining
   services.xmrig = {
-    enable = true; # i start and stop this when i please
+    enable = false; # i start and stop this when i please
     package = unstable.xmrig;
     settings = {
       autosave = true;
@@ -315,6 +315,8 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
       }];
     };
   };
+  #systemd.services.xmrig.wantedBy = [];
+  #systemd.services.xmrig.enabled = false;
 
   # making it possible to unfuck my system offline
   system.includeBuildDependencies = true;
