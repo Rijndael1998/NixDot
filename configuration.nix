@@ -34,13 +34,8 @@ in
   programs.nix-ld = {
     enable = true;
     package = pkgs.nix-ld;
-#    libraries = options.programs.nix-ld.libraries.default;
   };
 
-#  services.klipper = {
-#    enable = true;
-#    
-#  };
 
   hardware.sane.enable = true; # enables support for SANE scanners
 
@@ -65,9 +60,6 @@ in
   # piper
   services.ratbagd.enable = true;
 
-  # cpu temps
-  # services.auto-cpufreq.enable = true;
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -77,10 +69,6 @@ in
 
   networking.hostName = hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -304,8 +292,6 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
       }];
     };
   };
-  #systemd.services.xmrig.wantedBy = [];
-  #systemd.services.xmrig.enabled = false;
 
   # making it possible to unfuck my system offline
   system.includeBuildDependencies = true;
@@ -330,7 +316,6 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22000 22 80 ];
   networking.firewall.allowedUDPPorts = [ 22000 21027 ];
-  # Or disable the firewall altogether.
   networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
@@ -339,5 +324,5 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment? YES!
 }
