@@ -177,17 +177,6 @@ in
     packages = rPackages;
   };
 
-  # guest profile
-  users.users.guest = {
-    isNormalUser = true;
-    description = "Guest Profile";
-    extraGroups = [ 
-      "networkmanager"
-      "lp" # printer
-     ];
-    packages = rPackages;
-  };
-
   users.users.root = {
     packages = with pkgs; [
       lshw
