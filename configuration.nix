@@ -22,9 +22,11 @@ in
 
   hardware.graphics = {
     enable = true;
-    #driSupport = true;
-    #driSupport32Bit = true;
+    enable32Bit = true;
   };
+
+  programs.gamescope.enable = true;
+  programs.gamemode.enable = true;
 
   # dvb/tv
   hardware.rtl-sdr.enable = true;
@@ -32,13 +34,7 @@ in
   programs.nix-ld = {
     enable = true;
     package = pkgs.nix-ld;
-#    libraries = options.programs.nix-ld.libraries.default;
   };
-
-#  services.klipper = {
-#    enable = true;
-#    
-#  };
 
   hardware.sane.enable = true; # enables support for SANE scanners
 
@@ -56,8 +52,8 @@ in
     enable = true;
     group = "users";
     user = "r";
-    dataDir = "/run/media/r/External_SSD/Syncthing/";    # Default folder for new synced folders
-    configDir = "/run/media/r/External_SSD/Syncthing/.config/syncthing";   # Folder for Syncthing's settings and keys
+    dataDir = "/home/r/.syncthing";    # Default folder for new synced folders
+    configDir = "/home/r/.syncthing";   # Folder for Syncthing's settings and keys
   };
 
 
@@ -185,6 +181,7 @@ in
       "scanner"
       "lp"
       "plugdev"
+      "dialout"
      ];
     packages = rPackages;
   };

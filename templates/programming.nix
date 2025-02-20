@@ -1,4 +1,4 @@
-{ pkgs }: with pkgs; [
+{ pkgs, unstable }: with pkgs; [
   # versioning
   git
 
@@ -17,5 +17,6 @@
   # gay vscodium
   vscode.fhs
 
-  godot_4-mono
+  # unstable.godot_4-mono
+  unstable.godot_4
 ]

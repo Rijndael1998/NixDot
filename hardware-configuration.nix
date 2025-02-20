@@ -26,43 +26,24 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-#  fileSystems."/mnt/Internal 500GB SSD" =
-#    { device = "/dev/disk/by-uuid/26de236d-af94-4e7f-aa70-18687e53ba65";
-#      fsType = "ext4";
-#      options = [ "nofail" ];
-#    };
+  environment.etc.crypttab = {
+    mode = "0600";
+    text = ''
+      #
+      cryptstorage UUID=f366d91b-955d-4527-9f1b-d7f913c48260 /root/keys/2tb_toaster.key nofail
+      cryptstorage UUID=f20e3e7c-c606-409f-b68a-93f0d4e33b6a /root/keys/2tb_external.key nofail
+    '';
+  };
 
-#  boot.initrd.luks.devices."luks-443e8f4c-4da7-4eaa-ba32-283a7fa004d8" = 
-#    {
-#      device = "/dev/disk/by-uuid/443e8f4c-4da7-4eaa-ba32-283a7fa004d8";
-#      # keyFile = "/mnt-root/etc/luks-keys/luks-443e8f4c-4da7-4eaa-ba32-283a7fa004d8";
-#      # options = [ "nofail" ];
-#    };
-
-#  fileSystems."/mnt/External SSD" =
-#    { device = "/dev/disk/by-uuid/97c3f474-0ac0-4b18-b9cf-86c23c59190d";
-#      fsType = "ext4";
-#      options = [ "nofail" ];
-#    };
-
-#  boot.initrd.luks.devices."luks-f20e3e7c-c606-409f-b68a-93f0d4e33b6a" =
-#    {
-#      device = "/dev/disk/by-uuid/f20e3e7c-c606-409f-b68a-93f0d4e33b6a";
-#      # keyFile = "/mnt-root/etc/luks-keys/luks-f20e3e7c-c606-409f-b68a-93f0d4e33b6a";
-#      # options = [ "nofail" ];
-#    };
-
-  swapDevices = [ ];
+  swapDevices = [ 
+#    "/swapfile"
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.virbr0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
