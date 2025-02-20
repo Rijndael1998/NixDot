@@ -27,14 +27,24 @@
     };
 
   swapDevices = [ ];
+  environment.etc.crypttab = {
+    mode = "0600";
+    text = ''
+      #
+      cryptstorage UUID=f366d91b-955d-4527-9f1b-d7f913c48260 /root/keys/2tb_toaster.key nofail
+      cryptstorage UUID=f20e3e7c-c606-409f-b68a-93f0d4e33b6a /root/keys/2tb_external.key nofail
+    '';
+  };
+
+  swapDevices = [ 
+#    "/swapfile"
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

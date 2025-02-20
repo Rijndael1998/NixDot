@@ -22,11 +22,11 @@ in
 
   hardware.graphics = {
     enable = true;
-    #driSupport = true;
-    #driSupport32Bit = true;
+    enable32Bit = true;
   };
 
-  boot.loader.grub.memtest86.enable = true;
+  programs.gamescope.enable = true;
+  programs.gamemode.enable = true;
 
   # dvb/tv
   hardware.rtl-sdr.enable = true;
@@ -42,8 +42,8 @@ in
     enable = true;
     group = "users";
     user = "r";
-    dataDir = "/home/r/Syncthing/";    # Default folder for new synced folders
-    configDir = "/home/r/Syncthing/.config/syncthing";   # Folder for Syncthing's settings and keys
+    dataDir = "/home/r/.syncthing";    # Default folder for new synced folders
+    configDir = "/home/r/.syncthing";   # Folder for Syncthing's settings and keys
   };
 
   # node red
@@ -62,6 +62,7 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.memtest86.enable = true;
 
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
@@ -161,6 +162,7 @@ in
       "lp"
       "plugdev"
       "docker"
+      "dialout"
      ];
     packages = rPackages;
   };
