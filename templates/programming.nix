@@ -14,7 +14,7 @@
   # android studio
   pkgs.android-studio
 
-  # gay vscodium
+  # vscodium
   vscode.fhs
 
   # unstable.godot_4-mono

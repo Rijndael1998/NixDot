@@ -22,13 +22,13 @@
       {
         name = "code-spell-checker-british-english";
         publisher = "streetsidesoftware";
-        version = "v1.4.10";
+        version = "1.4.10";
         hash = "sha256-/Ezv6sHAhWy6XujB76tZVR7X5250BDXRQeypV0pqeBg=";
       }
       {
         name = "vscode-mdx";
         publisher = "unifiedjs";
-        version = "v1.8.9";
+        version = "1.8.9";
         hash = "sha256-qj8tHc3dtvSFSPUeufvYy+rsa1Gb4tFYemiMDNJlEKg=";
       }
     ];

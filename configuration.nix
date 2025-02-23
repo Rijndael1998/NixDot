@@ -38,16 +38,6 @@ in
 
   hardware.sane.enable = true; # enables support for SANE scanners
 
-  # opengl extras
-  hardware.graphics.extraPackages = with pkgs; [
-    amdvlk
-    rocmPackages.clr.icd # opencl
-  ];
- 
-  hardware.graphics.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
-
   services.syncthing = {
     enable = true;
     group = "users";
@@ -55,7 +45,6 @@ in
     dataDir = "/home/r/.syncthing";    # Default folder for new synced folders
     configDir = "/home/r/.syncthing";   # Folder for Syncthing's settings and keys
   };
-
 
   # node red
   services.node-red.enable = true;
@@ -70,25 +59,16 @@ in
   # piper
   services.ratbagd.enable = true;
 
-  # cpu temps
-  # services.auto-cpufreq.enable = true;
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # make sure my 100mb partition doesn't get clogged
-  # boot.loader.grub.configurationLimit = 10;
+  boot.loader.grub.memtest86.enable = true;
 
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
 
   networking.hostName = hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -181,20 +161,16 @@ in
       "scanner"
       "lp"
       "plugdev"
+      "docker"
       "dialout"
      ];
     packages = rPackages;
   };
 
-  # guest profile
-  users.users.guest = {
-    isNormalUser = true;
-    description = "Guest Profile";
-    extraGroups = [ 
-      "networkmanager"
-      "lp" # printer
-     ];
-    packages = rPackages;
+  # docker
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
   };
 
   users.users.root = {
@@ -220,6 +196,9 @@ in
     pkgs.veracrypt
 
     pkgs.gamemode
+
+    # dialog box access for kde
+    kdePackages.kdialog
 
     # basics for web
     git
@@ -309,7 +288,7 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
 
   # mining
   services.xmrig = {
-    enable = true; # i start and stop this when i please
+    enable = false; # i start and stop this when i please
     package = unstable.xmrig;
     settings = {
       autosave = true;
@@ -354,6 +333,5 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
-
+  system.stateVersion = "23.11"; # Did you read the comment? YES!
 }
