@@ -25,4 +25,9 @@
 
   # minecraft
   prismlauncher
+
+  #cad
+  openscad
+  kicad
+  arduino-ide
 ]
