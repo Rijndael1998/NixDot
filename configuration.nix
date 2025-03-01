@@ -25,6 +25,8 @@ in
     enable32Bit = true;
   };
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   programs.gamescope.enable = true;
   programs.gamemode.enable = true;
 
