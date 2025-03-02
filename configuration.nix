@@ -20,6 +20,11 @@ in
       ./custom-hardware.nix
     ];
 
+  nixpkgs.overlays = 
+    [ 
+      ( )
+    ];
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
