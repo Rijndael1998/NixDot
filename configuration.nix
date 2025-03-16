@@ -70,12 +70,17 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.memtest86.enable = true;
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
 
+  # systemd
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
+
   networking.hostName = hostname; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
   networking.networkmanager.enable = true;
