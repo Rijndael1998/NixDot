@@ -9,4 +9,6 @@
   killall
   clinfo
   dig
+  pwvucontrol
+  helvum
 ]
