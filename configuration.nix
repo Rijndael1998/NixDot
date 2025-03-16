@@ -71,6 +71,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.memtest86.enable = true;
   boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
