@@ -294,13 +294,35 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   networking.networkmanager.enable = true;
 
   # Open ports in the firewall.
+  networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
+    # http
     80
+
+    # node
     3000
+    3001
+
+    # ssh
+    22
   ];
 
-  networking.firewall.allowedUDPPorts = [ ];
-  networking.firewall.enable = true;
+  networking.firewall.allowedUDPPorts = [
+  ];
+
+  networking.firewall.allowedTCPPortRanges = [
+    { # kdeconnect
+      from = 1714;
+      to = 1764;
+    }
+  ];
+
+  networking.firewall.allowedUDPPortRanges = [
+    { # kdeconnect
+      from = 1714;
+      to = 1764;
+    }
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
