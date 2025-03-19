@@ -75,11 +75,6 @@ in
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
 
-  networking.hostName = hostname; # Define your hostname.
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
   # Set your time zone.
   time.timeZone = "Europe/London";
 
@@ -191,19 +186,14 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget
-
     pkgs.veracrypt
-
-    pkgs.gamemode
 
     # dialog box access for kde
     kdePackages.kdialog
 
     # basics for web
+    wget
     git
-    nodejs
-    yarn
 
     # lsusb and stuff
     usbutils
@@ -222,12 +212,14 @@ in
     pv
     pigz
 
+    # ffmpeg
     ffmpeg_7-full
     libGL
+    openh264
+    x264
 
+    # video download helper
     vdhcoapp
-
-    android-tools
 
     # Spelling
     aspell
@@ -247,9 +239,6 @@ in
 
     # opencl
     clinfo
-
-    openh264
-    x264
 
     # sdr/tv/dvb
     pkgs.rtl-sdr
@@ -304,15 +293,21 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # making it possible to unfuck my system offline
   system.includeBuildDependencies = true;
 
-  # netbird
-  services.netbird.enable = true;
-  services.netbird.package = unstable.netbird;
+  # Networking
+  networking.hostName = hostname;
+
+  # Enable networking
+  networking.networkmanager.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  networking.firewall.allowedTCPPorts = [
+    80
+    3000
+  ];
+
+  networking.firewall.allowedUDPPorts = [
+  ];
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

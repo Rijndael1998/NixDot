@@ -13,10 +13,18 @@
 
   # android studio
   pkgs.android-studio
+  android-tools
 
   # vscodium
   vscode.fhs
 
+  # microcontroller
+  arduino-ide
+
   # unstable.godot_4-mono
   unstable.godot_4
+
+  # node
+  nodejs
+  yarn
 ]
