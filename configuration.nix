@@ -1,15 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in
-let
-  # Import user's specific package list
-  rPackages = import ./r.nix { inherit pkgs; inherit unstable; };
+  rPackages = import ./r.nix { inherit pkgs; inherit unstable; }; # Import user's specific package list
   hostname = import ./hostname.nix { };
 in
 {
@@ -125,14 +118,14 @@ in
     openFirewall = true;
   };
 
+  # setting up our prints
   services.printing.drivers = [
     pkgs.gutenprint
     pkgs.gutenprintBin
     pkgs.canon-capt
   ];
 
-  # Enable sound with pipewire.
-  # sound.enable = true;
+  # sound
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -140,19 +133,10 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Enable steam
   programs.steam.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.r = {
@@ -181,6 +165,7 @@ in
     setSocketVariable = true;
   };
 
+  # root utils
   users.users.root = {
     packages = with pkgs; [
       lshw
@@ -198,7 +183,6 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
 
     pkgs.veracrypt
@@ -315,19 +299,6 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # netbird
   services.netbird.enable = true;
   services.netbird.package = unstable.netbird;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22000 22 80 ];
