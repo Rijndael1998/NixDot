@@ -23,10 +23,11 @@ in
     enable32Bit = true;
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  programs.gamescope.enable = true;
-  programs.gamemode.enable = true;
+  nix.settings.experimental-features =
+    [
+      "nix-command"
+      "flakes"
+    ];
 
   # dvb/tv
   hardware.rtl-sdr.enable = true;
@@ -135,8 +136,10 @@ in
     pulse.enable = true;
   };
 
-  # Enable steam
+  # Enable steam / games
   programs.steam.enable = true;
+  programs.gamescope.enable = true;
+  programs.gamemode.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.r = {
