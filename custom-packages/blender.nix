@@ -1,4 +1,3 @@
-# (pkgs.callPackage ../../system/app/blender.nix { })
 { pkgs, ... }:
 let
   py-slvs =
