@@ -16,6 +16,9 @@
   # 3d printing
   orca-slicer
 
+  # games
+  pkgs.gamemode
+
   # epic games
   (heroic.override {
     extraPkgs = pkgs: [
@@ -29,5 +32,4 @@
   #cad
   openscad
   kicad
-  arduino-ide
 ]
