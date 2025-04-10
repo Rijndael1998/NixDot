@@ -1,15 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in
-let
-  # Import user's specific package list
-  rPackages = import ./r.nix { inherit pkgs; inherit unstable; };
+  rPackages = import ./r.nix { inherit pkgs; inherit unstable; }; # Import user's specific package list
   hostname = import ./hostname.nix { };
 in
 {
@@ -20,13 +13,21 @@ in
       ./custom-hardware.nix
     ];
 
+  nixpkgs.overlays = 
+    [ 
+      (import ./overlays/esp/overlay.nix)
+    ];
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
-  programs.gamescope.enable = true;
-  programs.gamemode.enable = true;
+  nix.settings.experimental-features =
+    [
+      "nix-command"
+      "flakes"
+    ];
 
   # dvb/tv
   hardware.rtl-sdr.enable = true;
@@ -63,15 +64,16 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.memtest86.enable = true;
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelPackages = unstable.linuxPackages_latest;
 
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
 
-  networking.hostName = hostname; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+  # systemd
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -117,14 +119,14 @@ in
     openFirewall = true;
   };
 
+  # setting up our prints
   services.printing.drivers = [
     pkgs.gutenprint
     pkgs.gutenprintBin
     pkgs.canon-capt
   ];
 
-  # Enable sound with pipewire.
-  # sound.enable = true;
+  # sound
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -132,19 +134,12 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
-  # Enable steam
+  # Enable steam / games
   programs.steam.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  programs.gamescope.enable = true;
+  programs.gamemode.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.r = {
@@ -173,6 +168,7 @@ in
     setSocketVariable = true;
   };
 
+  # root utils
   users.users.root = {
     packages = with pkgs; [
       lshw
@@ -190,20 +186,14 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-
     pkgs.veracrypt
-
-    pkgs.gamemode
 
     # dialog box access for kde
     kdePackages.kdialog
 
     # basics for web
+    wget
     git
-    nodejs
-    yarn
 
     # lsusb and stuff
     usbutils
@@ -222,12 +212,14 @@ in
     pv
     pigz
 
+    # ffmpeg
     ffmpeg_7-full
     libGL
+    openh264
+    x264
 
+    # video download helper
     vdhcoapp
-
-    android-tools
 
     # Spelling
     aspell
@@ -247,9 +239,6 @@ in
 
     # opencl
     clinfo
-
-    openh264
-    x264
 
     # sdr/tv/dvb
     pkgs.rtl-sdr
@@ -304,28 +293,42 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # making it possible to unfuck my system offline
   system.includeBuildDependencies = true;
 
-  # netbird
-  services.netbird.enable = true;
-  services.netbird.package = unstable.netbird;
+  # Networking
+  networking.hostName = hostname;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # Enable networking
+  networking.networkmanager.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [
+    # http
+    80
+
+    # node
+    3000
+    3001
+
+    # ssh
+    22
+  ];
+
+  networking.firewall.allowedUDPPorts = [
+  ];
+
+  networking.firewall.allowedTCPPortRanges = [
+    { # kdeconnect
+      from = 1714;
+      to = 1764;
+    }
+  ];
+
+  networking.firewall.allowedUDPPortRanges = [
+    { # kdeconnect
+      from = 1714;
+      to = 1764;
+    }
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

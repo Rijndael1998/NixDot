@@ -1,0 +1,3 @@
+[submodule "overlays/esp"]
+	path = overlays/esp
+	url = https://github.com/mirrexagon/nixpkgs-esp-dev
