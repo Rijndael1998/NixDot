@@ -180,6 +180,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # for obvious reasons
     pkgs.veracrypt
 
     # dialog box access for kde
@@ -205,6 +206,7 @@ in
     # utils
     pv
     pigz
+    screen
 
     # ffmpeg
     ffmpeg_7-full
