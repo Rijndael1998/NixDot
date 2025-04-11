@@ -64,16 +64,10 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.memtest86.enable = true;
-  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelPackages = unstable.linuxPackages_latest;
 
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
-
-  # systemd
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  ];
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -186,6 +180,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # for obvious reasons
     pkgs.veracrypt
 
     # dialog box access for kde
@@ -211,6 +206,7 @@ in
     # utils
     pv
     pigz
+    screen
 
     # ffmpeg
     ffmpeg_7-full
