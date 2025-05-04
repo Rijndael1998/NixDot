@@ -11,4 +11,5 @@
   dig
   pwvucontrol
   helvum
+  unstable.handbrake
 ]

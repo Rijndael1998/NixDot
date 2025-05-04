@@ -189,6 +189,7 @@ in
     # basics for web
     wget
     git
+    unstable.lynx
 
     # lsusb and stuff
     usbutils
@@ -207,6 +208,7 @@ in
     pv
     pigz
     screen
+    bc
 
     # ffmpeg
     ffmpeg_7-full
@@ -225,9 +227,6 @@ in
 
     # mining
     unstable.xmrig
-
-    # Zero trust
-    unstable.netbird-ui
 
     # others
     p7zip
