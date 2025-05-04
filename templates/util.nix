@@ -12,4 +12,5 @@
   pwvucontrol
   helvum
   unstable.handbrake
+  unstable.czkawka-full
 ]
