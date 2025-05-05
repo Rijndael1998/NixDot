@@ -15,6 +15,7 @@
 
   # 3d printing
   orca-slicer
+  prusa-slicer
 
   # games
   pkgs.gamemode
