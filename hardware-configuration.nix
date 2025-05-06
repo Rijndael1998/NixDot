@@ -30,8 +30,8 @@
     mode = "0600";
     text = ''
       #
-      cryptstorage UUID=f366d91b-955d-4527-9f1b-d7f913c48260 /root/keys/2tb_toaster.key nofail
-      cryptstorage UUID=f20e3e7c-c606-409f-b68a-93f0d4e33b6a /root/keys/2tb_external.key nofail
+      crypttoaster  UUID=f366d91b-955d-4527-9f1b-d7f913c48260 /root/keys/2tb_toaster.key nofail
+      cryptexternal UUID=f20e3e7c-c606-409f-b68a-93f0d4e33b6a /root/keys/2tb_external.key nofail
     '';
   };
 
