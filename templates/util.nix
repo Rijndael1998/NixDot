@@ -13,4 +13,6 @@
   helvum
   unstable.handbrake
   unstable.czkawka-full
+  exiftool
+  unstable.digikam
 ]
