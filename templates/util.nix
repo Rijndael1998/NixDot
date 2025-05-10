@@ -15,4 +15,5 @@
   unstable.czkawka-full
   exiftool
   unstable.digikam
+  tor-browser
 ]
