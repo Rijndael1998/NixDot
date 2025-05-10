@@ -13,11 +13,6 @@ in
       ./custom-hardware.nix
     ];
 
-  nixpkgs.overlays = 
-    [ 
-      (import ./overlays/esp/overlay.nix)
-    ];
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -29,15 +24,10 @@ in
       "flakes"
     ];
 
-  # dvb/tv
-  hardware.rtl-sdr.enable = true;
-
   programs.nix-ld = {
     enable = true;
     package = pkgs.nix-ld;
   };
-
-  hardware.sane.enable = true; # enables support for SANE scanners
 
   services.syncthing = {
     enable = true;
@@ -53,12 +43,6 @@ in
   # ssh
   services.openssh.enable = true;
   services.openssh.settings.X11Forwarding = true;
-
-  # open rgb (oooo, pretty lights)
-  services.hardware.openrgb.enable = true;
-
-  # piper
-  services.ratbagd.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -86,15 +70,6 @@ in
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-  
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  programs.kdeconnect.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -104,36 +79,6 @@ in
 
   # Configure console keymap
   console.keyMap = "uk";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-
-  # setting up our prints
-  services.printing.drivers = [
-    pkgs.gutenprint
-    pkgs.gutenprintBin
-    pkgs.canon-capt
-  ];
-
-  # sound
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # Enable steam / games
-  programs.steam.enable = true;
-  programs.gamescope.enable = true;
-  programs.gamemode.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.r = {
@@ -170,19 +115,12 @@ in
     ];
   };
 
-  # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "r";
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # for obvious reasons
-    pkgs.veracrypt
-
     # dialog box access for kde
     kdePackages.kdialog
 
@@ -234,29 +172,7 @@ in
 
     # opencl
     clinfo
-
-    # sdr/tv/dvb
-    pkgs.rtl-sdr
-    gqrx
   ];
-
-  # espurino
-  services.udev.extraRules = ''
-ATTRS{idProduct}=="5740", ATTRS{idVendor}=="0483", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-ATTRS{idProduct}=="1015", ATTRS{idVendor}=="1366", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-ATTRS{idProduct}=="520f", ATTRS{idVendor}=="1915", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-  '';
-
-  # virtbox
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-
-  # waydroid / android
-  virtualisation.waydroid.enable = true;
-
-  # bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
 
   # Docker
   virtualisation.docker.enable = true;
@@ -268,7 +184,7 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   };
 
   # enable local ai
-  services.ollama.enable = true;
+  services.ollama.enable = false;
 
   # mining
   services.xmrig = {
@@ -331,5 +247,5 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment? YES!
+  system.stateVersion = "24.05"; # Did you read the comment? YES!
 }
