@@ -101,8 +101,6 @@ in
       "docker"
       "scanner"
       "lp"
-      "plugdev"
-      "docker"
       "dialout"
      ];
     packages = rPackages;
