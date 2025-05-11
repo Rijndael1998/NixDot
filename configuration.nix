@@ -44,6 +44,13 @@ in
   services.openssh.enable = true;
   services.openssh.settings.X11Forwarding = true;
 
+  # suid wrappers
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  }
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -100,6 +107,9 @@ in
      ];
     packages = rPackages;
   };
+
+  # guest tools
+  services.xe-guest-utilities.enable = true;
 
   # docker
   virtualisation.docker.rootless = {
@@ -216,29 +226,11 @@ in
     # http
     80
 
-    # node
-    3000
-    3001
-
     # ssh
     22
   ];
 
   networking.firewall.allowedUDPPorts = [
-  ];
-
-  networking.firewall.allowedTCPPortRanges = [
-    { # kdeconnect
-      from = 1714;
-      to = 1764;
-    }
-  ];
-
-  networking.firewall.allowedUDPPortRanges = [
-    { # kdeconnect
-      from = 1714;
-      to = 1764;
-    }
   ];
 
   # This value determines the NixOS release from which the default
