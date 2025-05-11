@@ -14,12 +14,7 @@ in
 with pkgs;
 [] ++ 
 essential ++ 
-office ++ 
 programming ++ 
 util ++
-social ++ 
-socialLower ++ 
-fun ++
 pentest ++
-finance ++
 []
