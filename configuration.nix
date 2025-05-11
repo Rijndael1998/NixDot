@@ -49,7 +49,8 @@ in
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-  }
+  };
+
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
