@@ -44,6 +44,13 @@ in
   services.openssh.enable = true;
   services.openssh.settings.X11Forwarding = true;
 
+  # suid wrappers
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
