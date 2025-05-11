@@ -54,6 +54,13 @@ in
   services.openssh.enable = true;
   services.openssh.settings.X11Forwarding = true;
 
+  # suid wrappers
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   # open rgb (oooo, pretty lights)
   services.hardware.openrgb.enable = true;
 
