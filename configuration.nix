@@ -156,8 +156,6 @@ in
       "docker"
       "scanner"
       "lp"
-      "plugdev"
-      "docker"
       "dialout"
      ];
     packages = rPackages;
@@ -187,9 +185,6 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # for obvious reasons
-    pkgs.veracrypt
-
     # dialog box access for kde
     kdePackages.kdialog
 
