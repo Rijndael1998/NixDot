@@ -231,6 +231,27 @@ in
   networking.firewall.allowedUDPPorts = [
   ];
 
+  services.nginx.virtualHosts = builtins.listToAttrs (
+    (map 
+      (import ./lambdas/nginx/simple.nix) [
+        "baldy.ga"
+        "ha.baldy.ga"
+        "lukasz.baldy.ga"
+        "next.baldy.ga"
+        "security.baldy.ga"
+        "testing.baldy.ga"
+        "www.baldy.ga"
+        "xoa.baldy.ga"
+        "matilda-gifts.ga"
+      ]
+    ) + [{
+      name = "localhost";
+      value = {
+        root = "/var/www/html";
+      };
+    }]
+  );
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
