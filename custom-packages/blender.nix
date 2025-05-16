@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ unstable, ... }:
 let
   py-slvs =
     pythonPkgs:
