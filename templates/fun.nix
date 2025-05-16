@@ -1,6 +1,6 @@
 { pkgs, unstable }: with pkgs; [
   neofetch
-  (pkgs.callPackage ../custom-packages/blender.nix { })
+  (unstable.callPackage ../custom-packages/blender.nix { })
 
   # Exercism
   pkgs.exercism
