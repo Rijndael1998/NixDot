@@ -157,6 +157,7 @@ in
       "scanner"
       "lp"
       "dialout"
+      "render"
      ];
     packages = rPackages;
   };
