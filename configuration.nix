@@ -18,6 +18,7 @@ in
       (import ./overlays/esp/overlay.nix)
     ];
 
+  # https://wiki.nixos.org/wiki/AMD_GPU
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -75,6 +76,20 @@ in
 
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  systemd.tmpfiles.rules = 
+  let
+    rocmEnv = pkgs.symlinkJoin {
+      name = "rocm-combined";
+      paths = with pkgs.rocmPackages; [
+        rocblas
+        hipblas
+        clr
+      ];
+    };
+  in [
+    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -96,6 +111,7 @@ in
   
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
