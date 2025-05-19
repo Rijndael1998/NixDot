@@ -1,6 +1,8 @@
 { pkgs, unstable }: with pkgs; [
   neofetch
-  (pkgs.callPackage ../custom-packages/blender.nix { })
+  
+  # pure hip blender
+  unstable.blender-hip
 
   # Exercism
   pkgs.exercism
