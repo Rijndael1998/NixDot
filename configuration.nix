@@ -157,6 +157,7 @@ in
       "scanner"
       "lp"
       "dialout"
+      "render"
      ];
     packages = rPackages;
   };
@@ -240,7 +241,14 @@ in
     # sdr/tv/dvb
     pkgs.rtl-sdr
     gqrx
+  
+    # gpu control
+    lact
   ];
+
+  # lact
+  systemd.packages = with pkgs; [ lact ];
+  systemd.services.lactd.wantedBy = ["multi-user.target"];
 
   # espurino
   services.udev.extraRules = ''
