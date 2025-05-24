@@ -295,6 +295,9 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
     };
   };
 
+  # mullvad vpn
+  services.mullvad-vpn.enable = true;
+
   # making it possible to unfuck my system offline
   system.includeBuildDependencies = true;
 
