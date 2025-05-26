@@ -15,6 +15,11 @@
   # 🏴‍☠️
   transmission_4-qt
 
+  # mullvad suite
+  mullvad
+  mullvad-vpn
+  mullvad-browser
+
   # 3d printing
   orca-slicer
   prusa-slicer
