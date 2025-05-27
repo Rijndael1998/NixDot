@@ -282,7 +282,7 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
 
   # mining
   services.xmrig = {
-    enable = false; # i start and stop this when i please
+    enable = true; 
     package = unstable.xmrig;
     settings = {
       autosave = true;
@@ -294,6 +294,7 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
       }];
     };
   };
+  systemd.services.xmrig.enable = false; # i start and stop this when i please
 
   # mullvad vpn
   services.mullvad-vpn.enable = true;
