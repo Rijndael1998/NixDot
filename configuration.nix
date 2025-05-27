@@ -3,7 +3,6 @@
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
   rPackages = import ./r.nix { inherit pkgs; inherit unstable; }; # Import user's specific package list
-  hostname = import ./hostname.nix { };
 in
 {
   imports =
