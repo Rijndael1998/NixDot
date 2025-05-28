@@ -13,7 +13,7 @@ pairs=(
 for ((i=0; i<${#pairs[@]}; i+=2)); do
     source="${pairs[i]}"
     destination="${pairs[i+1]}"
-    ./scripts/merge.sh $source $destination &
+    ./scripts/merge.sh $source $destination
 done
 
 wait
