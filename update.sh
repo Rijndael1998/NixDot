@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# unfuck the bash
+set -e 
+
 # unfuck the git
 git reset --hard
 git fetch
