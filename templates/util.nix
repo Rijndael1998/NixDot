@@ -5,7 +5,7 @@
   htop
   btop
   ventoy-full
-  filelight
+  kdePackages.filelight
   killall
   clinfo
   dig
