@@ -4,8 +4,8 @@
   lm_sensors
   htop
   btop
-  ventoy-full
-  filelight
+  # ventoy-full is marked as insecure
+  kdePackages.filelight
   killall
   clinfo
   dig
