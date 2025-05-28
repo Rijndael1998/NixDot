@@ -15,5 +15,3 @@ for ((i=0; i<${#pairs[@]}; i+=2)); do
     destination="${pairs[i+1]}"
     ./scripts/merge.sh $source $destination
 done
-
-wait
