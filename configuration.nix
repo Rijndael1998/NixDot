@@ -242,6 +242,7 @@ in
   networking.firewall.allowedUDPPorts = [
   ];
 
+  services.nginx.enable = true;
   services.nginx.virtualHosts = builtins.listToAttrs (
     (map 
       (import ./lambdas/nginx/simple.nix) [
