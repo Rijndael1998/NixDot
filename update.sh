@@ -14,7 +14,7 @@ nix-channel --remove nixos-unstable
 
 # stale for now...
 nix-channel --add https://nixos.org/channels/nixos-24.11 nixos
-nix-channel --add https://nixos.org/channels/unstable nixos-unstable
+nix-channel --add https://nixos.org/channels/nixos-unstable-small nixos-unstable
 
 nix-channel --update
 
