@@ -242,6 +242,7 @@ in
   networking.firewall.allowedUDPPorts = [
   ];
 
+  # configure nginx
   services.nginx.enable = true;
   services.nginx.virtualHosts = builtins.listToAttrs (
     (map 
@@ -263,6 +264,9 @@ in
       };
     }]
   );
+
+  # security email
+  security.acme.defaults.email = "acme@baldy.ga";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
