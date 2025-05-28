@@ -232,14 +232,17 @@ in
   # Open ports in the firewall.
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
-    # http
+    # http & https
     80
+    443
 
     # ssh
     22
   ];
 
   networking.firewall.allowedUDPPorts = [
+    80
+    443
   ];
 
   # configure nginx
