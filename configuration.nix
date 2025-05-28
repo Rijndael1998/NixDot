@@ -37,9 +37,6 @@ in
     configDir = "/home/r/.syncthing";   # Folder for Syncthing's settings and keys
   };
 
-  # node red
-  services.node-red.enable = true;
-
   # ssh
   services.openssh.enable = true;
   services.openssh.settings.X11Forwarding = true;
@@ -194,23 +191,9 @@ in
   systemd.packages = with pkgs; [ lact ];
   systemd.services.lactd.wantedBy = ["multi-user.target"];
 
-  # espurino
-  services.udev.extraRules = ''
-ATTRS{idProduct}=="5740", ATTRS{idVendor}=="0483", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-ATTRS{idProduct}=="1015", ATTRS{idVendor}=="1366", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-ATTRS{idProduct}=="520f", ATTRS{idVendor}=="1915", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-  '';
-
   # virtbox
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
-
-  # waydroid / android
-  virtualisation.waydroid.enable = true;
-
-  # bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
 
   # Docker
   virtualisation.docker.enable = true;
@@ -220,9 +203,6 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
     enable = true;
     lfs.enable = true;
   };
-
-  # enable local ai
-  services.ollama.enable = false;
 
   # mining
   services.xmrig = {
@@ -239,9 +219,6 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
     };
   };
   systemd.services.xmrig.enable = false; # i start and stop this when i please
-
-  # mullvad vpn
-  services.mullvad-vpn.enable = true;
 
   # making it possible to unfuck my system offline
   system.includeBuildDependencies = true;
