@@ -256,7 +256,7 @@ in
         "xoa.baldy.ga"
         "matilda-gifts.ga"
       ]
-    ) + [{
+    ) ++ [{
       name = "localhost";
       value = {
         root = "/var/www/html";
