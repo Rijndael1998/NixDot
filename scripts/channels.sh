@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 
-# unfuck the bash
 set -e 
 
-# unfuck the git
-git reset --hard
-git fetch
-git pull
-
-# unfuck the channels
+# remove channels
 nix-channel --remove nixos
 nix-channel --remove nixos-unstable
 
@@ -17,6 +11,3 @@ nix-channel --add https://nixos.org/channels/nixos-25.05          nixos
 nix-channel --add https://nixos.org/channels/nixos-unstable       nixos-unstable
 
 nix-channel --update
-
-# make the system
-nixos-rebuild boot
