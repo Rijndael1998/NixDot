@@ -32,6 +32,7 @@
     extraPkgs = pkgs: [
       pkgs.gamescope
     ];
+    electron_34 = pkgs.electron;
   })
 
   # minecraft
