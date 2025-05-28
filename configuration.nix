@@ -255,7 +255,7 @@ in
         "testing.baldy.ga"
         "www.baldy.ga"
         "xoa.baldy.ga"
-        "matilda-gifts.ga"
+        "matilda-gifts.shop"
       ]
     ) ++ [{
       name = "localhost";
