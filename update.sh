@@ -19,4 +19,4 @@ nix-channel --add https://nixos.org/channels/unstable nixos-unstable
 nix-channel --update
 
 # make the system
-nixos-build boot
+nixos-rebuild boot
