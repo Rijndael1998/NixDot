@@ -1,6 +1,6 @@
 { pkgs, unstable }: with pkgs; [
   mc
-  unstable.openrgb-with-all-plugins
+  (pkgs.callPackage "./custom-packages/openrgb.nix")
   lm_sensors
   htop
   btop
