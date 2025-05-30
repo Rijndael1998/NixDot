@@ -64,6 +64,7 @@ in
 
   # open rgb (oooo, pretty lights)
   services.hardware.openrgb.enable = true;
+  services.hardware.openrgb.package = (pkgs.callPackage "./custom-packages/openrgb.nix" {});
 
   # piper
   services.ratbagd.enable = true;
@@ -221,7 +222,6 @@ in
 
     # pretty lights & mouse software
     piper
-    openrgb-with-all-plugins
 
     # utils
     pv
