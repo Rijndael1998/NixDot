@@ -19,6 +19,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "CalcProgrammer1";
     repo = "OpenRGB";
     rev = "release_${finalAttrs.version}";
+    hash = "sha256-jKAKdja2Q8FldgnRqOdFSnr1XHCC8eC6WeIUv83e7x4=";
   };
 
   nativeBuildInputs =
