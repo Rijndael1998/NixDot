@@ -1,6 +1,6 @@
 { pkgs, unstable }: with pkgs; [
   mc
-  (pkgs.callPackage ./custom-packages/openrgb.nix {})
+  (pkgs.callPackage ../custom-packages/openrgb.nix {})
   lm_sensors
   htop
   btop
