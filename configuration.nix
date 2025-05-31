@@ -146,7 +146,6 @@ in
 
     # pretty lights & mouse software
     piper
-    openrgb-with-all-plugins
 
     # utils
     pv
