@@ -64,7 +64,7 @@ in
 
   # open rgb (oooo, pretty lights)
   services.hardware.openrgb.enable = true;
-  services.hardware.openrgb.package = (pkgs.callPackage ./custom-packages/openrgb.nix {});
+  services.hardware.openrgb.package = unstable.openrgb-with-all-plugins;
 
   # piper
   services.ratbagd.enable = true;
