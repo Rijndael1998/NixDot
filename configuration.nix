@@ -250,7 +250,6 @@ in
     (map 
       (import ./lambdas/nginx/simple.nix) [
         "baldy.ga"
-        "ha.baldy.ga"
         "lukasz.baldy.ga"
         "next.baldy.ga"
         "security.baldy.ga"
@@ -259,7 +258,15 @@ in
         "xoa.baldy.ga"
         "matilda-gifts.shop"
       ]
-    ) ++ [{
+    )
+    ++
+    (map
+      (import ./lambdas/nginx/reverse.nix) [
+        {domain = "ha.baldy.ga"; proxyURL = "http://homeassistant.lan:8123/"; }
+      ]
+    )
+    ++ 
+    [{
       name = "localhost";
       value = {
         root = "/var/www/html";
