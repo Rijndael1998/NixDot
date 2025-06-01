@@ -1,4 +1,4 @@
-{ domain, proxyURL, extra } : {
+{ domain, proxyURL, extra ? "" } : {
   name = domain;
   value = {
     enableACME = true;
