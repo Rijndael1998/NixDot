@@ -1,4 +1,4 @@
-{ domain, proxyURL } : {
+{ domain, proxyURL, extra } : {
   name = domain;
   value = {
     enableACME = true;
@@ -12,6 +12,8 @@
       #   # required when the server wants to use HTTP Authentication
       #   "proxy_pass_header Authorization;"
       #   ;
+      extraConfig = extra;
     };
+
   };
 }

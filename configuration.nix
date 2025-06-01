@@ -266,9 +266,9 @@ in
           proxyURL = "http://homeassistant.lan:8123/";
         }
         {
-          # this this will be eventually set up on this machine
           domain = "xoa.baldy.ga";
           proxyURL = "https://xoa.lan/";
+          extra = "proxy_ssl_verify off";
         }
       ]
     )
