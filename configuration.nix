@@ -268,7 +268,13 @@ in
         {
           domain = "xoa.baldy.ga";
           proxyURL = "https://xoa.lan/";
-          extra = "proxy_ssl_verify off";
+          extraLoc = ''
+            proxy_ssl_verify off;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+          '';
         }
       ]
     )
