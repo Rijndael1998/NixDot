@@ -255,14 +255,21 @@ in
         "security.baldy.ga"
         "testing.baldy.ga"
         "www.baldy.ga"
-        "xoa.baldy.ga"
         "matilda-gifts.shop"
       ]
     )
     ++
     (map
       (import ./lambdas/nginx/reverse.nix) [
-        {domain = "ha.baldy.ga"; proxyURL = "http://homeassistant.lan:8123/"; }
+        {
+          domain = "ha.baldy.ga";
+          proxyURL = "http://homeassistant.lan:8123/";
+        }
+        {
+          # this this will be eventually set up on this machine
+          domain = "xoa.baldy.ga";
+          proxyURL = "https://xoa.lan/";
+        }
       ]
     )
     ++ 
