@@ -248,7 +248,7 @@ in
   services.nginx.enable = true;
   services.nginx.virtualHosts = builtins.listToAttrs (
     (map 
-      (import ./lambdas/nginx/simple.nix) [
+      (import ./lambdas/nginx/indexed.nix) [
         "baldy.ga"
         "lukasz.baldy.ga"
         "next.baldy.ga"
