@@ -283,6 +283,12 @@ in
       name = "localhost";
       value = {
         root = "/var/www/html";
+        extraConfig = ''
+            autoindex on;
+            autoindex_exact_size off;
+            autoindex_format html;
+            autoindex_localtime on;
+        ''
       };
     }]
   );
