@@ -288,7 +288,7 @@ in
             autoindex_exact_size off;
             autoindex_format html;
             autoindex_localtime on;
-        ''
+        '';
       };
     }]
   );
