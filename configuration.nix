@@ -219,6 +219,9 @@ in
   };
   systemd.services.xmrig.enable = false; # i start and stop this when i please
 
+  # mullvad vpn
+  services.mullvad-vpn.enable = true;
+
   # making it possible to unfuck my system offline
   system.includeBuildDependencies = true;
 
