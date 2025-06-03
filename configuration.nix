@@ -255,7 +255,6 @@ in
         "security.baldy.ga"
         "testing.baldy.ga"
         "www.baldy.ga"
-        "matilda-gifts.shop"
       ]
     )
     ++
@@ -270,11 +269,12 @@ in
           proxyURL = "https://xoa.lan/";
           extraLoc = ''
             proxy_ssl_verify off;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
           '';
+        }
+        {
+          domain = "matilda-gifts.shop";
+          proxyURL = "http://portainer.lan:8080/";
+
         }
       ]
     )
