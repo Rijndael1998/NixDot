@@ -267,6 +267,11 @@ in
           domain = "ha.baldy.ga";
           proxyURL = "http://homeassistant.lan:8123/";
         }
+      ]
+    )
+    ++
+    (map
+      (import ./lambdas/nginx/reverse_with_headers.nix) [
         {
           domain = "xoa.baldy.ga";
           proxyURL = "https://xoa.lan/";
@@ -277,7 +282,6 @@ in
         {
           domain = "matilda-gifts.shop";
           proxyURL = "http://portainer.lan:8080/";
-
         }
       ]
     )
