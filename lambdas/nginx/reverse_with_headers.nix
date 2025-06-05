@@ -1,3 +1,4 @@
+# TODO: This could call the reverse and then add on the extra config
 { domain, proxyURL, extraLoc ? "", extraMain ? "" } : {
   name = domain;
   value = {
