@@ -6,7 +6,7 @@
 
   # splats
   colmap
-  opensplat
+  # opensplat
 
   # Exercism
   pkgs.exercism
