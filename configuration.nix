@@ -222,8 +222,8 @@ in
   # mullvad vpn
   services.mullvad-vpn.enable = true;
 
-  # making it possible to unfuck my system offline
-  system.includeBuildDependencies = true;
+  # setting this to true makes it possible to fix systems without the net
+  system.includeBuildDependencies = false;
 
   # Networking
   networking.hostName = hostname;
