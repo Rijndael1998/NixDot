@@ -4,6 +4,10 @@
   # pure hip blender
   unstable.blender-hip
 
+  # splats
+  colmap
+  opensplat
+
   # Exercism
   pkgs.exercism
 
