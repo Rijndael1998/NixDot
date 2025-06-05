@@ -220,8 +220,8 @@ in
   };
   systemd.services.xmrig.enable = false; # i start and stop this when i please
 
-  # making it possible to unfuck my system offline
-  system.includeBuildDependencies = true;
+  # setting this to true makes it possible to fix systems without the net
+  system.includeBuildDependencies = false;
 
   # Networking
   networking.hostName = hostname;
