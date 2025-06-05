@@ -6,8 +6,9 @@ set -e
 nix-channel --remove nixos
 nix-channel --remove nixos-unstable
 
-# stale for now...
-nix-channel --add https://nixos.org/channels/nixos-25.05-small          nixos
+# unstable seems to be more stable
+nix-channel --add https://nixos.org/channels/nixos-unstable             nixos
 nix-channel --add https://nixos.org/channels/nixos-unstable-small       nixos-unstable
+
 
 nix-channel --update

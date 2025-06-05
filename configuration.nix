@@ -315,8 +315,8 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # mullvad vpn
   services.mullvad-vpn.enable = true;
 
-  # making it possible to unfuck my system offline
-  system.includeBuildDependencies = true;
+  # setting this to true makes it possible to fix systems without the net
+  system.includeBuildDependencies = false;
 
   # Networking
   networking.hostName = hostname;
