@@ -256,7 +256,6 @@ in
         "lukasz.baldy.ga"
         "next.baldy.ga"
         "security.baldy.ga"
-        "testing.baldy.ga"
         "www.baldy.ga"
       ]
     )
@@ -303,6 +302,11 @@ in
   # acme
   security.acme.defaults.email = "acme@baldy.ga";
   security.acme.acceptTerms = true;
+
+  # pastebin
+  services.privatebin.virtualHost = "testing.baldy.ga";
+  services.privatebin.enable = true;
+  services.privatebin.enableNginx = true;
 
   # mysql
   services.mysql = {
