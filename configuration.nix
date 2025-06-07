@@ -260,6 +260,12 @@ in
       ]
     )
     ++
+    (map # only add ssh support
+      (import ./lambdas/nginx/acme.nix) [
+        "testing.baldy.ga"
+      ]
+    )
+    ++
     (map
       (import ./lambdas/nginx/reverse.nix) [
         {
