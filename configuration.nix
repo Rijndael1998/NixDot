@@ -276,6 +276,34 @@ in
     )
     ++
     (map
+      (import ./lambdas/nginx/reverse_with_ssl.nix) [
+        {
+          domain = "rijn.dev";
+          proxyURL = "http://localhost/";
+          key = "rijn.dev";
+        }
+        { # rijn.pl
+          domain = "rijn.pl";
+          proxyURL = "http://localhost/";
+          key = "rijn.pl";
+        }
+        {
+          domain = "html.rijn.pl";
+          proxyURL = "http://localhost/";
+          key = "rijn.pl";
+        }
+        {
+          domain = "xoa.rijn.pl";
+          proxyURL = "https://xoa.lan/";
+          extraLoc = ''
+            proxy_ssl_verify off;
+          '';
+          key = "rijn.pl";
+        }
+      ]
+    )
+    ++
+    (map
       (import ./lambdas/nginx/reverse_with_headers.nix) [
         {
           domain = "xoa.baldy.ga";
