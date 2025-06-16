@@ -289,22 +289,22 @@ in
           proxyURL = "http://localhost/";
           key = "rijn.dev";
         }
-        { # rijn.pl
-          domain = "rijn.pl";
+        {
+          domain = "html.rijn.dev";
           proxyURL = "http://localhost/";
-          key = "rijn.pl";
+          key = "rijn.dev";
         }
         {
-          domain = "html.rijn.pl";
-          proxyURL = "http://localhost/";
-          key = "rijn.pl";
-        }
-        {
-          domain = "xoa.rijn.pl";
+          domain = "xoa.rijn.dev";
           proxyURL = "https://xoa.lan/";
           extraLoc = ''
             proxy_ssl_verify off;
           '';
+          key = "rijn.dev";
+        }
+        { # rijn.pl
+          domain = "rijn.pl";
+          proxyURL = "http://localhost/";
           key = "rijn.pl";
         }
       ]
