@@ -222,6 +222,13 @@ in
   # mullvad vpn
   services.mullvad-vpn.enable = true;
 
+  # tor
+  services.tor.relay.role = "relay";
+  services.tor.openFirewall = true;
+  services.tor.relay.enable = false;
+  services.tor.settings.ExitRelay = false;
+  services.tor.settings.BridgeRelay = false;
+
   # setting this to true makes it possible to fix systems without the net
   system.includeBuildDependencies = false;
 
