@@ -215,6 +215,13 @@ in
   # mullvad vpn
   services.mullvad-vpn.enable = true;
 
+  # tor
+  services.tor.relay.role = "relay";
+  services.tor.openFirewall = true;
+  services.tor.relay.enable = false;
+  services.tor.settings.ExitRelay = false;
+  services.tor.settings.BridgeRelay = false;
+
   # setting this to true makes it possible to fix systems without the net
   system.includeBuildDependencies = false;
 
@@ -264,6 +271,34 @@ in
         {
           domain = "ha.baldy.ga";
           proxyURL = "http://homeassistant.lan:8123/";
+        }
+      ]
+    )
+    ++
+    (map
+      (import ./lambdas/nginx/reverse_with_ssl.nix) [
+        {
+          domain = "rijn.dev";
+          proxyURL = "http://localhost/";
+          key = "rijn.dev";
+        }
+        {
+          domain = "html.rijn.dev";
+          proxyURL = "http://localhost/";
+          key = "rijn.dev";
+        }
+        {
+          domain = "xoa.rijn.dev";
+          proxyURL = "https://xoa.lan/";
+          extraLoc = ''
+            proxy_ssl_verify off;
+          '';
+          key = "rijn.dev";
+        }
+        { # rijn.pl
+          domain = "rijn.pl";
+          proxyURL = "http://localhost/";
+          key = "rijn.pl";
         }
       ]
     )
