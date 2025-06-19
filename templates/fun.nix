@@ -6,15 +6,15 @@
 
   # splats
   colmap
-  # opensplat
+  opensplat
 
   # Exercism
   pkgs.exercism
 
   # Required for kden
   glaxnimate
-  libsForQt5.kdenlive
   kdePackages.kdenlive
+  ladspaPlugins
 
   # 🏴‍☠️
   transmission_4-qt
@@ -44,4 +44,7 @@
   #cad
   openscad
   kicad
+
+  # voice
+  easyeffects
 ]
