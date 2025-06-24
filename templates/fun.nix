@@ -5,8 +5,8 @@
   unstable.blender-hip
 
   # splats
-  colmap
-  opensplat
+#  colmap
+#  opensplat
 
   # Exercism
   pkgs.exercism
