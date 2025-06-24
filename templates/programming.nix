@@ -27,4 +27,13 @@
   # node
   nodejs
   yarn
+
+  # java
+  (jetbrains.idea-community-bin.override {
+    extraPkgs = pkgs: [
+      maven
+      libvlc
+      jdk
+    ];
+  })
 ]
