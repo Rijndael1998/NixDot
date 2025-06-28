@@ -11,8 +11,6 @@ in
       ./hardware-configuration.nix
       # Include custom hardware
       ./custom-hardware.nix
-      # musnix
-      <musnix>
     ];
 
   hardware.graphics = {
