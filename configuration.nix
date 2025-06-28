@@ -100,6 +100,7 @@ in
       "lp"
       "dialout"
       "render"
+      "audio"
      ];
     packages = rPackages;
   };
