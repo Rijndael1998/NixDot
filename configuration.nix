@@ -153,6 +153,7 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  musnix.enable = true;
 
   # Enable steam / games
   programs.steam.enable = true;
@@ -175,6 +176,7 @@ in
       "lp"
       "dialout"
       "render"
+      "audio"
      ];
     packages = rPackages;
   };
