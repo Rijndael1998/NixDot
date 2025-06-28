@@ -341,6 +341,10 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
       from = 1714;
       to = 1764;
     }
+    { # tmp
+      from = 41233;
+      to = 51235;
+    }
   ];
 
   # This value determines the NixOS release from which the default
