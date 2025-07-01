@@ -241,11 +241,17 @@ in
 
     # ssh
     22
+
+    # asf
+    1242
   ];
 
   networking.firewall.allowedUDPPorts = [
     80
     443
+
+    # asf
+    1242
   ];
 
   # configure nginx
