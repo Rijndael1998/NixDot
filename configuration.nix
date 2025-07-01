@@ -352,6 +352,15 @@ in
   # asf
   services.archisteamfarm.enable = true;
   services.archisteamfarm.web-ui.enable = true;
+  services.archisteamfarm.ipcSettings = {
+    Kestrel = {
+      Endpoints = {
+        HTTP = {
+          Url = "http://*:1242";
+        };
+      };
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
