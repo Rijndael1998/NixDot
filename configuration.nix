@@ -232,6 +232,32 @@ in
   networking.firewall.allowedUDPPorts = [
   ];
 
+  systemd.timers."auto-update" = {
+  wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true; 
+      Unit = "auto-update.service";
+    };
+  };
+
+  systemd.services."auto-update" = {
+    script = ''
+      set -e
+
+      /etc/nixos/scripts/cleanAndPull.sh
+
+      nix-channel --update
+      nixos-rebuild switch
+
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+  };
+
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
