@@ -213,16 +213,6 @@ in
   };
   systemd.services.xmrig.enable = false; # i start and stop this when i please
 
-  # mullvad vpn
-  services.mullvad-vpn.enable = true;
-
-  # tor
-  services.tor.relay.role = "relay";
-  services.tor.openFirewall = true;
-  services.tor.relay.enable = false;
-  services.tor.settings.ExitRelay = false;
-  services.tor.settings.BridgeRelay = false;
-
   # setting this to true makes it possible to fix systems without the net
   system.includeBuildDependencies = false;
 
@@ -235,122 +225,12 @@ in
   # Open ports in the firewall.
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
-    # http & https
-    80
-    443
-
     # ssh
     22
   ];
 
   networking.firewall.allowedUDPPorts = [
-    80
-    443
   ];
-
-  # configure nginx
-  services.nginx.enable = true;
-  services.nginx.virtualHosts = builtins.listToAttrs (
-    (map 
-      (import ./lambdas/nginx/indexed.nix) [
-        "baldy.ga"
-        "lukasz.baldy.ga"
-        "next.baldy.ga"
-        "security.baldy.ga"
-        "www.baldy.ga"
-      ]
-    )
-    ++
-    (map # only add ssh support
-      (import ./lambdas/nginx/acme.nix) [
-        "testing.baldy.ga"
-      ]
-    )
-    ++
-    (map
-      (import ./lambdas/nginx/reverse.nix) [
-        {
-          domain = "ha.baldy.ga";
-          proxyURL = "http://homeassistant.lan:8123/";
-        }
-      ]
-    )
-    ++
-    (map
-      (import ./lambdas/nginx/reverse_with_ssl.nix) [
-        {
-          domain = "rijn.dev";
-          proxyURL = "http://localhost/";
-          key = "rijn.dev";
-        }
-        {
-          domain = "html.rijn.dev";
-          proxyURL = "http://localhost/";
-          key = "rijn.dev";
-        }
-        {
-          domain = "xoa.rijn.dev";
-          proxyURL = "https://xoa.lan/";
-          extraLoc = ''
-            proxy_ssl_verify off;
-          '';
-          key = "rijn.dev";
-        }
-        { # rijn.pl
-          domain = "rijn.pl";
-          proxyURL = "http://localhost/";
-          key = "rijn.pl";
-        }
-      ]
-    )
-    ++
-    (map
-      (import ./lambdas/nginx/reverse_with_headers.nix) [
-        {
-          domain = "xoa.baldy.ga";
-          proxyURL = "https://xoa.lan/";
-          extraLoc = ''
-            proxy_ssl_verify off;
-          '';
-        }
-        {
-          domain = "matilda-gifts.shop";
-          proxyURL = "http://portainer.lan:8080/";
-        }
-      ]
-    )
-    ++ 
-    [{
-      name = "localhost";
-      value = {
-        root = "/var/www/html";
-        extraConfig = ''
-            autoindex on;
-            autoindex_exact_size off;
-            autoindex_format html;
-            autoindex_localtime on;
-        '';
-      };
-    }]
-  );
-
-  # acme
-  security.acme.defaults.email = "acme@baldy.ga";
-  security.acme.acceptTerms = true;
-
-  # pastebin
-  services.privatebin.virtualHost = "testing.baldy.ga";
-  services.privatebin.enable = true;
-  services.privatebin.enableNginx = true;
-
-  # mysql
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
-  };
-
-  # asf
-  services.archisteamfarm.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
