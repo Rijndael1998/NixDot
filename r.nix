@@ -16,12 +16,8 @@ with pkgs;
 [] ++ 
 audio ++
 essential ++ 
-finance ++
-fun ++
 office ++ 
 pentest ++
 programming ++ 
-social ++ 
-socialLower ++ 
 util ++
 []
