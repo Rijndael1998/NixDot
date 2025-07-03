@@ -31,22 +31,9 @@ in
       "flakes"
     ];
 
-  # dvb/tv
-  hardware.rtl-sdr.enable = true;
-
   programs.nix-ld = {
     enable = true;
     package = pkgs.nix-ld;
-  };
-
-  hardware.sane.enable = true; # enables support for SANE scanners
-
-  services.syncthing = {
-    enable = true;
-    group = "users";
-    user = "r";
-    dataDir = "/home/r/.syncthing";    # Default folder for new synced folders
-    configDir = "/home/r/.syncthing";   # Folder for Syncthing's settings and keys
   };
 
   # node red
@@ -62,13 +49,6 @@ in
     enable = true;
     enableSSHSupport = true;
   };
-
-  # open rgb (oooo, pretty lights)
-  services.hardware.openrgb.enable = true;
-  services.hardware.openrgb.package = unstable.openrgb-with-all-plugins;
-
-  # piper
-  services.ratbagd.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -115,21 +95,6 @@ in
   # Configure console keymap
   console.keyMap = "uk";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-
-  # setting up our prints
-  services.printing.drivers = [
-    pkgs.gutenprint
-    pkgs.gutenprintBin
-    pkgs.canon-capt
-  ];
-
   # sound
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -140,11 +105,6 @@ in
     pulse.enable = true;
   };
   musnix.enable = true;
-
-  # Enable steam / games
-  programs.steam.enable = true;
-  programs.gamescope.enable = true;
-  programs.gamemode.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.r = {
@@ -165,12 +125,6 @@ in
       "audio"
      ];
     packages = rPackages;
-  };
-
-  # docker
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
   };
 
   # root utils
@@ -208,9 +162,6 @@ in
     gparted
     pkgs.ntfs3g
 
-    # pretty lights & mouse software
-    piper
-
     # utils
     pv
     pigz
@@ -222,9 +173,6 @@ in
     libGL
     openh264
     x264
-
-    # video download helper
-    vdhcoapp
 
     # Spelling
     aspell
@@ -241,36 +189,7 @@ in
 
     # opencl
     clinfo
-
-    # sdr/tv/dvb
-    pkgs.rtl-sdr
-    gqrx
-  
-    # gpu control
-    lact
   ];
-
-  # lact
-  systemd.packages = with pkgs; [ lact ];
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
-
-  # espurino
-  services.udev.extraRules = ''
-ATTRS{idProduct}=="5740", ATTRS{idVendor}=="0483", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-ATTRS{idProduct}=="1015", ATTRS{idVendor}=="1366", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-ATTRS{idProduct}=="520f", ATTRS{idVendor}=="1915", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1", MODE="0666", GROUP="plugdev"
-  '';
-
-  # virtbox
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-
-  # waydroid / android
-  virtualisation.waydroid.enable = true;
-
-  # bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
 
   # Docker
   virtualisation.docker.enable = true;
@@ -281,31 +200,6 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
     lfs.enable = true;
   };
 
-  # enable local ai
-  services.ollama.enable = true;
-
-  # mining
-  services.xmrig = {
-    enable = true; 
-    package = unstable.xmrig;
-    settings = {
-      autosave = true;
-      cpu = true;
-      opencl = false;
-      cuda = false;
-      pools = [{
-        url = "baldy.ga";
-      }];
-    };
-  };
-  systemd.services.xmrig.enable = false; # i start and stop this when i please
-
-  # mullvad vpn
-  services.mullvad-vpn.enable = true;
-
-  # setting this to true makes it possible to fix systems without the net
-  system.includeBuildDependencies = false;
-
   # Networking
   networking.hostName = hostname;
 
@@ -315,32 +209,15 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # Open ports in the firewall.
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
-    # http
-    80
-
-    # node
-    3000
-    3001
-
-    # ssh
-    22
   ];
 
   networking.firewall.allowedUDPPorts = [
   ];
 
   networking.firewall.allowedTCPPortRanges = [
-    { # kdeconnect
-      from = 1714;
-      to = 1764;
-    }
   ];
 
   networking.firewall.allowedUDPPortRanges = [
-    { # kdeconnect
-      from = 1714;
-      to = 1764;
-    }
   ];
 
   # This value determines the NixOS release from which the default
@@ -349,5 +226,5 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment? YES!
+  system.stateVersion = "25.04"; # Did you read the comment? YES!
 }
