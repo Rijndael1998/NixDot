@@ -213,16 +213,6 @@ in
   };
   systemd.services.xmrig.enable = false; # i start and stop this when i please
 
-  # mullvad vpn
-  services.mullvad-vpn.enable = true;
-
-  # tor
-  services.tor.relay.role = "relay";
-  services.tor.openFirewall = true;
-  services.tor.relay.enable = false;
-  services.tor.settings.ExitRelay = false;
-  services.tor.settings.BridgeRelay = false;
-
   # setting this to true makes it possible to fix systems without the net
   system.includeBuildDependencies = false;
 
@@ -235,10 +225,6 @@ in
   # Open ports in the firewall.
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
-    # http & https
-    80
-    443
-
     # ssh
     22
 
