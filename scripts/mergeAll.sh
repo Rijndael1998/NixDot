@@ -6,6 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"/../
 pairs=(
     "master" "smol-latest"
     "master" "omen"
+    "master" "work/laptop"
     "master" "server/master"
     "server/master" "server/trusty"
 )
