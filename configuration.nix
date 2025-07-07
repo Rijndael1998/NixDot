@@ -179,14 +179,23 @@ in
       "dialout"
       "render"
       "audio"
+      "video"
      ];
     packages = rPackages;
   };
 
   # docker
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
+  virtualisation =  {
+    docker.rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+
+    podman = {
+      enable = true;
+      dockerCompat = true; # Optional: allows using docker CLI
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 
   # root utils
@@ -264,6 +273,10 @@ in
   
     # gpu control
     lact
+
+    # podman
+    podman
+    distrobox
   ];
 
   # lact
