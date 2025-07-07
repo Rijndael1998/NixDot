@@ -184,13 +184,8 @@ in
     packages = rPackages;
   };
 
-  # docker
+  # docker / podman
   virtualisation =  {
-    docker.rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-
     podman = {
       enable = true;
       dockerCompat = true; # Optional: allows using docker CLI
@@ -276,7 +271,10 @@ in
 
     # podman
     podman
+    podman-tui
     distrobox
+    docker-compose
+    dive
   ];
 
   # lact
