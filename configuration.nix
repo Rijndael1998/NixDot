@@ -359,6 +359,7 @@ in
   services.privatebin.enable = true;
   services.privatebin.enableNginx = true;
 
+  # website neo
   systemd.user.services.website = {
     enable = true;
     after = [ "network.target" ];
