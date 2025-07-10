@@ -359,6 +359,17 @@ in
   services.privatebin.enable = true;
   services.privatebin.enableNginx = true;
 
+  systemd.user.services.website = {
+    enable = true;
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    description = "Website Neo";
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = ''/home/r/Website-Neo/Run.sh'';
+    };
+  };
+
   # mysql
   services.mysql = {
     enable = true;
