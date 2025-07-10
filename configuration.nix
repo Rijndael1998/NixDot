@@ -37,6 +37,30 @@ in
     configDir = "/home/r/.syncthing";   # Folder for Syncthing's settings and keys
   };
 
+  # tor node
+  services.tor = {
+    enableGeoIP = true;
+
+    settings = {
+      Address = "baldy.ga";
+
+      ContactInfo = "c3ypt1c@gmail.com";
+
+      # HashedControlPassword 16:9958340DF0B50ED0606F3EA86CE7C4B6D40B1991ED01A26CD92C8358A4
+      ORPort = 25565;
+      DirPort = 25566;
+      ControlPort = [ { port = 9051; } ];
+
+      RelayBandwidthRate = "25000 KBytes";
+      RelayBandwidthBurst = "25000 KBytes";
+    };
+    
+    relay = {
+      enable = true;
+      role = "relay";
+    };
+  };
+
   # ssh
   services.openssh.enable = true;
   services.openssh.settings.X11Forwarding = true;
