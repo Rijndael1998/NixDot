@@ -258,6 +258,10 @@ in
 
     # asf
     1242
+
+    # syncthing
+    8384
+    22000
   ];
 
   networking.firewall.allowedUDPPorts = [
@@ -267,6 +271,10 @@ in
 
     # asf
     1242
+
+    # syncthing
+    22000
+    21027
   ];
 
   # configure nginx
