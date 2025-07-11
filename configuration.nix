@@ -384,7 +384,7 @@ in
 
     path = with pkgs; [ git bash yarn nodejs ];
     serviceConfig = {
-      User = "r";
+      User = "r"; # this is a soft (1/10) vulenerability, please fix
       Type = "simple";
       ExecStart = ''${pkgs.bash}/bin/bash /home/r/Website-Neo/Run.sh'';
     };
