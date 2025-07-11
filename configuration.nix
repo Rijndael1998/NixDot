@@ -206,7 +206,7 @@ in
     # sdr/tv/dvb
     pkgs.rtl-sdr
     gqrx
-  ] + rPackages;
+  ] ++ rPackages;
 
   # virtbox
   virtualisation.libvirtd.enable = true;
