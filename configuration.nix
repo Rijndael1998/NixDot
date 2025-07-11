@@ -383,7 +383,7 @@ in
     description = "Website Neo";
     serviceConfig = {
       Type = "simple";
-      ExecStart = ''/home/r/Website-Neo/Run.sh'';
+      ExecStart = ''${pkgs.bash}/bin/bash /home/r/Website-Neo/Run.sh'';
     };
   };
 
