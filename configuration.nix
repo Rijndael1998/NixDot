@@ -381,6 +381,8 @@ in
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     description = "Website Neo";
+
+    path = with pkgs; [ git bash yarn nodejs ];
     serviceConfig = {
       Type = "simple";
       ExecStart = ''${pkgs.bash}/bin/bash /home/r/Website-Neo/Run.sh'';
@@ -418,6 +420,7 @@ in
   };
 
   systemd.services."auto-update" = {
+    path = with pkgs; [ git bash ];
     script = ''
       set -e
 
