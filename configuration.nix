@@ -384,6 +384,7 @@ in
 
     path = with pkgs; [ git bash yarn nodejs ];
     serviceConfig = {
+      User = "r";
       Type = "simple";
       ExecStart = ''${pkgs.bash}/bin/bash /home/r/Website-Neo/Run.sh'';
     };
