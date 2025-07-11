@@ -249,6 +249,10 @@ in
   # Open ports in the firewall.
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
+    # web
+    80
+    443
+
     # ssh
     22
 
@@ -257,6 +261,7 @@ in
   ];
 
   networking.firewall.allowedUDPPorts = [
+    # web
     80
     443
 
