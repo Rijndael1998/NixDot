@@ -279,14 +279,10 @@ in
 
   # configure nginx
   services.nginx.enable = true;
-  services.nginx.virtualHosts = builtins.listToAttrs (
+  services.nginx.virtualHosts = builtins.listToAttrs (     
     (map 
       (import ./lambdas/nginx/indexed.nix) [
-        "baldy.ga"
-        "lukasz.baldy.ga"
-        "next.baldy.ga"
         "security.baldy.ga"
-        "www.baldy.ga"
       ]
     )
     ++
@@ -298,10 +294,17 @@ in
     ++
     (map
       (import ./lambdas/nginx/reverse.nix) [
+        # home assistant
         {
           domain = "ha.baldy.ga";
           proxyURL = "http://homeassistant.lan:8123/";
         }
+
+        # website neo
+        { proxyURL = "http://localhost:10000/"; domain = "baldy.ga"; }
+        { proxyURL = "http://localhost:10000/"; domain = "lukasz.baldy.ga"; }
+        { proxyURL = "http://localhost:10000/"; domain = "next.baldy.ga"; }
+        { proxyURL = "http://localhost:10000/"; domain = "www.baldy.ga"; }
       ]
     )
     ++
