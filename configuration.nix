@@ -244,7 +244,6 @@ in
   services.immich.enable = true;
   services.immich.port = 2283;
   services.immich.settings.server.externalDomain = "https://immich.rijndael.xyz/";
-  services.immich.openFirewall = true; # TODO: Disable this after getting domain
 
   # immich acceleration
   services.immich.accelerationDevices = null; # not sure what this is on a vm
