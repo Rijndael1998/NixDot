@@ -240,6 +240,17 @@ in
   };
   systemd.services.xmrig.enable = false; # i start and stop this when i please
 
+  # immich
+  services.immich.enable = true;
+  services.immich.port = 2283;
+  # TODO: services.immich.settings.server.externalDomain = "immich.baldy.ga";
+  services.immich.openFirewall = true; # TODO: Disable this after getting domain
+
+  # immich acceleration
+  services.immich.accelerationDevices = null; # not sure what this is on a vm
+  users.users.immich.extraGroups = [ "video" "render" ];
+
+
   # setting this to true makes it possible to fix systems without the net
   system.includeBuildDependencies = false;
 
