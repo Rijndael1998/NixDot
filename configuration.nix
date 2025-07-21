@@ -243,7 +243,7 @@ in
   # immich
   services.immich.enable = true;
   services.immich.port = 2283;
-  services.immich.settings.server.externalDomain = "immich.rijndael.xyz";
+  services.immich.settings.server.externalDomain = "https://immich.rijndael.xyz/";
   services.immich.openFirewall = true; # TODO: Disable this after getting domain
 
   # immich acceleration
