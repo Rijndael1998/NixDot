@@ -6,7 +6,7 @@ let
   hostname = import ./hostname.nix { };
 
   # vars
-  websiteNeoURL = "localhost:10000";
+  websiteNeoURL = "http://localhost:10000/";
 in
 {
   imports =
