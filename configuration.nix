@@ -373,7 +373,7 @@ in
     )
     ++
     (map
-      (import ./lambdas/nginx/reverse_with_headers.nix) [
+      (import ./lambdas/nginx/reverse_with_headers_and_ws.nix) [
         {
           domain = "immich.rijndael.xyz";
           proxyURL = "http://localhost:2283/";
