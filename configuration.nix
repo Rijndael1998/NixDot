@@ -243,7 +243,7 @@ in
   # immich
   services.immich.enable = true;
   services.immich.port = 2283;
-  # TODO: services.immich.settings.server.externalDomain = "immich.baldy.ga";
+  services.immich.settings.server.externalDomain = "immich.rijndael.xyz";
   services.immich.openFirewall = true; # TODO: Disable this after getting domain
 
   # immich acceleration
@@ -276,6 +276,9 @@ in
     # syncthing
     8384
     22000
+
+    # immich
+    2283
   ];
 
   networking.firewall.allowedUDPPorts = [
@@ -289,6 +292,9 @@ in
     # syncthing
     22000
     21027
+
+    # immich
+    2283
   ];
 
   # configure nginx
@@ -363,6 +369,10 @@ in
         {
           domain = "matilda-gifts.shop";
           proxyURL = "http://portainer.lan:8080/";
+        }
+        {
+          domain = "immich.rijndael.xyz";
+          proxyURL = "http://localhost:2283/";
         }
       ]
     )
