@@ -4,6 +4,9 @@ let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
   rPackages = import ./r.nix { inherit pkgs; inherit unstable; }; # Import user's specific package list
   hostname = import ./hostname.nix { };
+
+  # vars
+  websiteNeoURL = "localhost:10000";
 in
 {
   imports =
@@ -301,10 +304,11 @@ in
         }
 
         # website neo
-        { proxyURL = "http://localhost:10000/"; domain = "baldy.ga"; }
-        { proxyURL = "http://localhost:10000/"; domain = "lukasz.baldy.ga"; }
-        { proxyURL = "http://localhost:10000/"; domain = "next.baldy.ga"; }
-        { proxyURL = "http://localhost:10000/"; domain = "www.baldy.ga"; }
+        { proxyURL = websiteNeoURL; domain = "baldy.ga"; }
+        { proxyURL = websiteNeoURL; domain = "lukasz.baldy.ga"; }
+        { proxyURL = websiteNeoURL; domain = "next.baldy.ga"; }
+        { proxyURL = websiteNeoURL; domain = "www.baldy.ga"; }
+        { proxyURL = websiteNeoURL; domain = "rijndael.xyz"; }
       ]
     )
     ++
@@ -312,7 +316,7 @@ in
       (import ./lambdas/nginx/reverse_with_ssl.nix) [
         {
           domain = "rijn.dev";
-          proxyURL = "http://localhost/";
+          proxyURL = websiteNeoURL;
           key = "rijn.dev";
         }
         {
@@ -330,7 +334,7 @@ in
         }
         { # rijn.pl
           domain = "rijn.pl";
-          proxyURL = "http://localhost/";
+          proxyURL = websiteNeoURL;
           key = "rijn.pl";
         }
       ]
