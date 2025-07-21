@@ -369,6 +369,11 @@ in
           domain = "matilda-gifts.shop";
           proxyURL = "http://portainer.lan:8080/";
         }
+      ]
+    )
+    ++
+    (map
+      (import ./lambdas/nginx/reverse_with_headers.nix) [
         {
           domain = "immich.rijndael.xyz";
           proxyURL = "http://localhost:2283/";
