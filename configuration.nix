@@ -314,10 +314,7 @@ in
     (map
       (import ./lambdas/nginx/reverse.nix) [
         # home assistant
-        {
-          domain = "ha.baldy.ga";
-          proxyURL = "http://homeassistant.lan:8123/";
-        }
+        { proxyURL = "http://homeassistant.lan:8123/"; domain = "ha.baldy.ga"; }
 
         # website neo
         { proxyURL = websiteNeoURL; domain = "baldy.ga"; }
