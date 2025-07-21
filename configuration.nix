@@ -246,7 +246,7 @@ in
   services.immich.settings.server.externalDomain = "https://immich.rijndael.xyz/";
 
   # immich acceleration
-  services.immich.accelerationDevices = null; # not sure what this is on a vm
+  # services.immich.accelerationDevices = null; # not sure what this is on a vm
   users.users.immich.extraGroups = [ "video" "render" ];
 
 
