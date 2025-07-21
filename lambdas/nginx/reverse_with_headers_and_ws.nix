@@ -7,7 +7,7 @@
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
 
-    client_max_body_size 0;
+    client_max_body_size 100000M;
     proxy_read_timeout   600s;
     proxy_send_timeout   600s;
     send_timeout         600s;
