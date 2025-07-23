@@ -6,6 +6,7 @@
     locations."/" = {
       proxyPass = proxyURL;
       proxyWebsockets = true;
+      recommendedProxySettings = true;
 
       extraConfig = extraLoc;
     };

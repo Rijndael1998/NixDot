@@ -1,4 +1,4 @@
-{ domain, proxyURL, extraLoc ? "", extraMain ? "" } : (import ./reverse.nix {
+{ domain, proxyURL, extraLoc ? "", extraMain ? "" } : (import ./reverse_recommended.nix {
   domain = domain;
   proxyURL = proxyURL;
   extraLoc = ''
