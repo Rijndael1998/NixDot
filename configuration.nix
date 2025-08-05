@@ -76,14 +76,20 @@ in
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-  
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Enable the XFCE Desktop Environment.
+  nixpkgs.config.pulseaudio = true;
+
+  services.xserver = {
+    enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      xfce.enable = true;
+    };
+  };
+
+  services.displayManager.defaultSession = "xfce";
+
   programs.kdeconnect.enable = true;
 
   # Configure keymap in X11
