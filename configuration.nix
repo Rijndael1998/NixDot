@@ -473,7 +473,7 @@ in
     extraConfig = ''
 zmq-pub=tcp://127.0.0.1:18083
 out-peers=32
-in-peer=64
+in-peers=64
 
 disable-dns-checkpoints=1
 enable-dns-blocklist=1
