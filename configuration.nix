@@ -410,7 +410,7 @@ in
 
     path = with pkgs; [ git bash yarn nodejs ];
     serviceConfig = {
-      User = "r"; # this is a soft (1/10) vulenerability, please fix
+      User = "website";
       Type = "simple";
       ExecStart = ''${pkgs.bash}/bin/bash /home/r/Website-Neo/Run.sh'';
     };
@@ -463,6 +463,7 @@ in
     };
   };
 
+  # monero
   services.monero = {
     enable = true;
     priorityNodes = [
@@ -481,6 +482,21 @@ in-peers=64
 disable-dns-checkpoints=1
 enable-dns-blocklist=1
     '';
+  };
+
+  # p2pool
+  systemd.services."p2pool" = {
+    enable = true;
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    description = "p2pool";
+
+    path = with pkgs; [ p2pool ];
+    serviceConfig = {
+      User = "p2pool";
+      Type = "simple";
+      ExecStart = ''${pkgs.p2pool}/bin/p2pool --host 127.0.0.1 --wallet 457q3Ttfx5HcjLVn14qamaTrE8gef21sdQEHycNt7krkTEStvCDPn8L8XUV2B8mkqrgg9stouPSTUaTMzqh1HtSEJXXRR3z'';
+    };
   };
 
   # This value determines the NixOS release from which the default
