@@ -424,7 +424,7 @@ in
     serviceConfig = {
       User = "website";
       Type = "simple";
-      ExecStart = ''${pkgs.bash}/bin/bash /home/r/Website-Neo/Run.sh'';
+      ExecStart = ''${pkgs.bash}/bin/bash /var/Website-Neo/Run.sh'';
     };
   };
 
