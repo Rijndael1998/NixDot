@@ -134,11 +134,15 @@ in
 
   users.users.p2pool = {
     isSystemUser = true;
+    group = "p2pool";
   };
+  users.groups.p2pool = {};
 
   users.users.website = {
     isSystemUser = true;
+    group = "website";
   };
+  users.groups.website = {};
 
   # guest tools
   services.xe-guest-utilities.enable = true;
