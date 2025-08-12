@@ -132,6 +132,14 @@ in
     packages = rPackages;
   };
 
+  users.users.p2pool = {
+    isSystemUser = true;
+  };
+
+  users.users.website = {
+    isSystemUser = true;
+  };
+
   # guest tools
   services.xe-guest-utilities.enable = true;
 
