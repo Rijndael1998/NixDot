@@ -470,7 +470,7 @@ in
       "nodes.hashvault.pro:18080"
     ];
     rpc.address = "0.0.0.0";
-    extraConfig = """
+    extraConfig = ''
 zmq-pub=tcp://127.0.0.1:18083
 out-peers=32
 in-peer=64
@@ -480,7 +480,7 @@ enable-dns-blocklist=1
 
 limit-rate-up=262144
 limit-rate-down=655360
-    """; # 1048576 kB/s == 1GB/s;
+    ''; # 1048576 kB/s == 1GB/s;
   };
 
   # This value determines the NixOS release from which the default
