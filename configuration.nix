@@ -474,6 +474,7 @@ in
     limits.download = 655360; # 1048576 kB/s == 1GB/s;
     extraConfig = ''
 zmq-pub=tcp://127.0.0.1:18083
+confirm-external-bind=1
 out-peers=32
 in-peers=64
 
