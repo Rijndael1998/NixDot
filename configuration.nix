@@ -508,6 +508,7 @@ enable-dns-blocklist=1
       User = "p2pool";
       Type = "simple";
       ExecStart = ''${pkgs.p2pool}/bin/p2pool --host 127.0.0.1 --wallet 457q3Ttfx5HcjLVn14qamaTrE8gef21sdQEHycNt7krkTEStvCDPn8L8XUV2B8mkqrgg9stouPSTUaTMzqh1HtSEJXXRR3z'';
+      WorkingDirectory = "/var/p2pool/";
     };
   };
 
