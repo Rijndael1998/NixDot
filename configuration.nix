@@ -291,6 +291,9 @@ in
     # immich
     2283
 
+    # monero
+    18081
+  
     # p2pool
     3333
   ];
@@ -309,6 +312,9 @@ in
 
     # immich
     2283
+
+    # monero
+    18081
 
     # p2pool
     3333
