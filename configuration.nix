@@ -290,6 +290,9 @@ in
 
     # immich
     2283
+
+    # p2pool
+    3333
   ];
 
   networking.firewall.allowedUDPPorts = [
@@ -306,6 +309,9 @@ in
 
     # immich
     2283
+
+    # p2pool
+    3333
   ];
 
   # configure nginx
