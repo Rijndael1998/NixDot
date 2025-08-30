@@ -1,4 +1,4 @@
-{ desc, pack, admin } : {
+{ pkgs, desc, pack, admin } : {
   isNormalUser = true;
   description = desc;
   extraGroups = [ 
@@ -13,7 +13,7 @@
     "dialout"
     "render"
     "audio"
-    ] ++ lib.optionals (admin) [
+    ] ++ pkgs.lib.optionals (admin) [
     "wheel"
     ];
   packages = pack;
