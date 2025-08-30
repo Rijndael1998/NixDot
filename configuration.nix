@@ -140,12 +140,12 @@ in
   programs.gamemode.enable = true;
 
   users.users = {
-    r = (import ./lambdas/users/normal.nix) { 
+    r = (import ./lambdas/user/normal.nix) { 
       desc = "Rin";
       pack = rPackages;
       admin = true;
     };
-    alifeee = (import ./lambdas/users/normal.nix) { 
+    alifeee = (import ./lambdas/user/normal.nix) { 
       desc = "Alifeee";
       pack = rPackages;
       admin = true;
