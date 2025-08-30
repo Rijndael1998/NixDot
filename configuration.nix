@@ -41,14 +41,6 @@ in
 
   hardware.sane.enable = true; # enables support for SANE scanners
 
-  services.syncthing = {
-    enable = true;
-    group = "users";
-    user = "r";
-    dataDir = "/home/r/.syncthing";    # Default folder for new synced folders
-    configDir = "/home/r/.syncthing";   # Folder for Syncthing's settings and keys
-  };
-
   # node red
   services.node-red.enable = true;
 
@@ -168,6 +160,7 @@ in
   };
 
   # docker
+  virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {
     enable = true;
     setSocketVariable = true;
@@ -180,10 +173,6 @@ in
       pciutils
     ];
   };
-
-  # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "r";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -245,14 +234,7 @@ in
     # sdr/tv/dvb
     pkgs.rtl-sdr
     gqrx
-  
-    # gpu control
-    lact
   ];
-
-  # lact
-  systemd.packages = with pkgs; [ lact ];
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
 
   # espurino
   services.udev.extraRules = ''
@@ -271,9 +253,6 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
 
   # bluetooth
   hardware.bluetooth.enable = true; # enables support for Bluetooth
-
-  # Docker
-  virtualisation.docker.enable = true;
   
   # Git
   programs.git = {
@@ -283,22 +262,6 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
 
   # enable local ai
   services.ollama.enable = true;
-
-  # mining
-  services.xmrig = {
-    enable = true; 
-    package = unstable.xmrig;
-    settings = {
-      autosave = true;
-      cpu = true;
-      opencl = false;
-      cuda = false;
-      pools = [{
-        url = "baldy.ga";
-      }];
-    };
-  };
-  systemd.services.xmrig.enable = false; # i start and stop this when i please
 
   # mullvad vpn
   services.mullvad-vpn.enable = true;
@@ -349,5 +312,5 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment? YES!
+  system.stateVersion = "25.05"; # Did you read the comment? YES!
 }
