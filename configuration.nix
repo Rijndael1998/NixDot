@@ -67,6 +67,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.memtest86.enable = true;
   boot.kernelPackages = unstable.linuxPackages_latest;
+  boot.kernelModules = ["ecryptfs"];
 
   # boot options
   boot.supportedFilesystems = [ "ntfs" ]; # add ntfs support
@@ -159,6 +160,9 @@ in
     packages = rPackages;
   };
 
+  # https://nixos.wiki/wiki/ECryptfs
+  security.pam.enableEcryptfs = true;
+
   # docker
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {
@@ -234,6 +238,9 @@ in
     # sdr/tv/dvb
     pkgs.rtl-sdr
     gqrx
+
+    # home folder security
+    ecryptfs
   ];
 
   # espurino
