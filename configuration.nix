@@ -160,6 +160,10 @@ in
     packages = rPackages;
   };
 
+  users.users = {
+    
+  }
+
   # https://nixos.wiki/wiki/ECryptfs
   security.pam.enableEcryptfs = true;
 
