@@ -8,6 +8,7 @@ pairs=(
     "master" "omen"
     "master" "work/laptop"
     "master" "server/master"
+    "master" "feature/hackspace"
     "server/master" "server/trusty"
 )
 
