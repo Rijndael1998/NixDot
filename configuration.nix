@@ -216,6 +216,8 @@ in
     pigz
     screen
     bc
+    file
+    jq
 
     # ffmpeg
     ffmpeg_7-full
