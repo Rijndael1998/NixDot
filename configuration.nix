@@ -139,30 +139,18 @@ in
   programs.gamescope.enable = true;
   programs.gamemode.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.r = {
-    isNormalUser = true;
-    description = "Rin";
-    extraGroups = [ 
-      "networkmanager"
-      "wheel"
-      "plugdev"
-      "uucp"
-      "lock"
-      "libvirtd"
-      "docker"
-      "scanner"
-      "lp"
-      "dialout"
-      "render"
-      "audio"
-     ];
-    packages = rPackages;
-  };
-
   users.users = {
-    
-  }
+    r = (import ./lambdas/users/normal.nix) { 
+      desc = "Rin";
+      pack = rPackages;
+      admin = true;
+    };
+    alifeee = (import ./lambdas/users/normal.nix) { 
+      desc = "Alifeee";
+      pack = rPackages;
+      admin = true;
+    };
+  };
 
   # https://nixos.wiki/wiki/ECryptfs
   security.pam.enableEcryptfs = true;

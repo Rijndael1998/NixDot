@@ -17,4 +17,5 @@
     "wheel"
     ];
   packages = pack;
+  initialPassword = "strawberry";
 }
