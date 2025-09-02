@@ -8,6 +8,6 @@ nix-channel --remove nixos-unstable
 
 # unstable seems to be more stable
 nix-channel --add https://nixos.org/channels/nixos-unstable-small               nixos
-nix-channel --add https://nixos.org/channels/nixos-unstable=small               nixos-unstable
+nix-channel --add https://nixos.org/channels/nixos-unstable-small               nixos-unstable
 
 nix-channel --update
