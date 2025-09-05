@@ -16,4 +16,5 @@
   exiftool
   unstable.digikam
   tor-browser
+  parallel
 ]
