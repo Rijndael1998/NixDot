@@ -6,8 +6,8 @@
   ungoogled-chromium
 
   # scripting...
-  python312Full
-  python312Packages.opencv4
+  python314Full
+  python314Packages.opencv4
   gtk2 #for cv2
   qt5.full
 
