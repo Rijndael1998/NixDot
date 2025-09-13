@@ -229,6 +229,9 @@ in
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
+  # waydroid / android
+  virtualisation.waydroid.enable = true;
+
   # Docker
   virtualisation.docker.enable = true;
   
