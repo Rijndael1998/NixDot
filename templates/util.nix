@@ -6,6 +6,7 @@
   btop
   # ventoy-full is marked as insecure
   kdePackages.filelight
+  kdePackages.k3b # dvd burner
   killall
   clinfo
   dig
