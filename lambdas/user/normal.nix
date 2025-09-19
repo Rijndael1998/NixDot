@@ -13,6 +13,7 @@
     "dialout"
     "render"
     "audio"
+    "cdrom"
     ] ++ pkgs.lib.optionals (admin) [
     "wheel"
     ];
