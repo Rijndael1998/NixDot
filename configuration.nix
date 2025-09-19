@@ -41,6 +41,10 @@ in
 
   hardware.sane.enable = true; # enables support for SANE scanners
 
+  #cd management
+  services.udisks2.enable = true;
+  programs.k3b.enable = true;
+
   services.syncthing = {
     enable = true;
     group = "users";
@@ -163,6 +167,7 @@ in
       "dialout"
       "render"
       "audio"
+      "cdrom"
      ];
     packages = rPackages;
   };
