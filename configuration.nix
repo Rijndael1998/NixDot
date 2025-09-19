@@ -44,7 +44,6 @@ in
 
   #cd management
   services.udisks2.enable = true;
-  programs.k3b.enable = true;
 
   services.syncthing = {
     enable = true;
