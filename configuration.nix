@@ -285,6 +285,24 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
     lfs.enable = true;
   };
 
+  # for k3b
+  security.wrappers = {
+    cdrdao = {
+      setuid = true;
+      owner = "root";
+      group = "cdrom";
+      permissions = "u+wrx,g+x";
+      source = "${pkgs.cdrdao}/bin/cdrdao";
+    };
+    cdrecord = {
+      setuid = true;
+      owner = "root";
+      group = "cdrom";
+      permissions = "u+wrx,g+x";
+      source = "${pkgs.cdrtools}/bin/cdrecord";
+    };
+  };
+
   # enable local ai
   services.ollama.enable = true;
 
