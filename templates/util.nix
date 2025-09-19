@@ -20,7 +20,7 @@
 
   # dvd
   kdePackages.k3b # dvd burner
-  cdrecord
+  cdrtools
   cdrdao
   dvdplusrwtools
 ]
