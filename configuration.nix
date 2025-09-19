@@ -36,6 +36,16 @@ in
     package = pkgs.nix-ld;
   };
 
+  hardware.sane.enable = true; # enables support for SANE scanners
+
+  services.syncthing = {
+    enable = true;
+    group = "users";
+    user = "r";
+    dataDir = "/home/r/.syncthing";    # Default folder for new synced folders
+    configDir = "/home/r/.syncthing";   # Folder for Syncthing's settings and keys
+  };
+
   # node red
   services.node-red.enable = true;
 
@@ -129,6 +139,7 @@ in
       "dialout"
       "render"
       "audio"
+      "cdrom"
      ];
     packages = rPackages;
   };
