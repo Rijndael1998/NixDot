@@ -128,6 +128,7 @@ in
       "dialout"
       "render"
       "audio"
+      "cdrom"
      ];
     packages = rPackages;
   };
