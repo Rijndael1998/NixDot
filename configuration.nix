@@ -281,12 +281,6 @@ in
     distrobox
     docker-compose
     dive
-
-    # dvd
-    kdePackages.k3b # dvd burner
-    cdrtools
-    cdrdao
-    dvdplusrwtools
   ];
 
   # lact
