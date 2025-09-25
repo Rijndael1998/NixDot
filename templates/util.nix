@@ -17,10 +17,4 @@
   unstable.digikam
   tor-browser
   parallel
-
-  # dvd
-  kdePackages.k3b # dvd burner
-  cdrtools
-  cdrdao
-  dvdplusrwtools
 ]

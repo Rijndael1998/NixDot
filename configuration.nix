@@ -215,6 +215,12 @@ in
   
     # gpu control
     lact
+
+    # dvd
+    kdePackages.k3b # dvd burner
+    cdrtools
+    cdrdao
+    dvdplusrwtools
   ];
 
   # lact
