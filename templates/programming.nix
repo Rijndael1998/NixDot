@@ -9,7 +9,6 @@
   python313
   python313Packages.opencv4
   gtk2 #for cv2
-  qt5.full
 
   # android studio
   pkgs.android-studio
