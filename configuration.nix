@@ -141,6 +141,8 @@ in
 
   users.users.website = {
     isSystemUser = true;
+    isNormalUser = true;
+    packages = rPackages;
     group = "website";
   };
   users.groups.website = {};
