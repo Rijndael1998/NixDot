@@ -443,7 +443,7 @@ in
     serviceConfig = {
       User = "website";
       Type = "simple";
-      WorkingDirectory = "/var/Website-Neo/";
+      WorkingDirectory = "/home/website/Website-Neo/";
       ExecStart = ''${pkgs.bash}/bin/bash Run.sh'';
     };
   };
