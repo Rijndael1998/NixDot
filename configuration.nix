@@ -149,9 +149,12 @@ in
   services.xe-guest-utilities.enable = true;
 
   # docker
-  virtualisation.docker.rootless = {
+  virtualisation.docker = {
     enable = true;
-    setSocketVariable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
   };
 
   # root utils
@@ -233,9 +236,6 @@ in
   # waydroid / android
   virtualisation.waydroid.enable = true;
 
-  # Docker
-  virtualisation.docker.enable = true;
-  
   # Git
   programs.git = {
     enable = true;
