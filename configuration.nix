@@ -140,7 +140,6 @@ in
   users.groups.p2pool = {};
 
   users.users.website = {
-    isSystemUser = true;
     isNormalUser = true;
     packages = rPackages;
     group = "website";
