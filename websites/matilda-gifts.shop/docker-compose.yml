@@ -3,8 +3,8 @@ version: '2'
 services:
    db:
      image: mariadb:latest
-     #ports: # Delete this after importing your data
-       #- 3306:3306
+     ports: # Delete this after importing your data
+       - 3306:3306
      volumes:
        - db_data:/var/lib/mysql
      restart: always
@@ -13,7 +13,7 @@ services:
        MYSQL_DATABASE: ${DB_NAME}
        MYSQL_USER: ${DB_USER}
        MYSQL_PASSWORD: ${DB_PASSWORD}
-     #command: --skip-grant-tables
+     command: --skip-grant-tables
 
    wordpress:
      image: wordpress:latest
