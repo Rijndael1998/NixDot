@@ -434,7 +434,7 @@ in
   # website neo
   systemd.services.website = {
     enable = true;
-    after = [ "network.target" ];
+    after = [ "network.target" "nginx.service" ];
     wantedBy = [ "multi-user.target" ];
     description = "Website Neo";
 
@@ -442,7 +442,23 @@ in
     serviceConfig = {
       User = "website";
       Type = "simple";
-      ExecStart = ''${pkgs.bash}/bin/bash /var/Website-Neo/Run.sh'';
+      WorkingDirectory = "/var/Website-Neo/";
+      ExecStart = ''${pkgs.bash}/bin/bash Run.sh'';
+    };
+  };
+
+  systemd.services.matilda = {
+    enable = true;
+    after = [ "network.target" "nginx.service" ];
+    wantedBy = [ "multi-user.target" ];
+    description = "Matilda Gifts Shop docker";
+
+    path = with pkgs; [ docker ];
+    serviceConfig = {
+      User = "website";
+      Type = "simple";
+      WorkingDirectory = "/etc/nixos/websites/matilda-gifts.shop/";
+      ExecStart = ''${pkgs.bash}/bin/docker-compose up'';
     };
   };
 
