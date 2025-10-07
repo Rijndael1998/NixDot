@@ -230,6 +230,13 @@ in
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
+  # virtualbox
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ 
+    "r"
+    "root"
+  ];
+
   # waydroid / android
   virtualisation.waydroid.enable = true;
 
