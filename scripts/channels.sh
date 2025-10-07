@@ -9,7 +9,7 @@ nix-channel --remove musnix
 
 # unstable seems to be more stable
 nix-channel --add https://nixos.org/channels/nixos-25.05               nixos
-nix-channel --add https://nixos.org/channels/nixos-unstable               nixos-unstable
+nix-channel --add https://nixos.org/channels/nixos-25.05               nixos-unstable
 nix-channel --add https://github.com/musnix/musnix/archive/master.tar.gz  musnix
 
 nix-channel --update
