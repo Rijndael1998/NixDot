@@ -300,11 +300,11 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   programs.virt-manager.enable = true;
 
   # virtualbox
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ 
-    "r"
-    "root"
-  ];
+  # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = [ 
+  #   "r"
+  #   "root"
+  # ];
 
   # waydroid / android
   virtualisation.waydroid.enable = true;
