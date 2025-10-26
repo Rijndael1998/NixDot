@@ -294,6 +294,9 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   # enable local ai
   services.ollama.enable = true;
 
+  # let users have their cron
+  services.cron.enable = true;
+
   # mullvad vpn
   services.mullvad-vpn.enable = true;
 
