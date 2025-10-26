@@ -266,6 +266,9 @@ in
   };
   systemd.services.xmrig.enable = false; # i start and stop this when i please
 
+  # let users have their cron
+  services.cron.enable = true;
+
   # immich
   services.immich.enable = true;
   services.immich.port = 2283;
