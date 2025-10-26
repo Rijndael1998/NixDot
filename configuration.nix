@@ -335,6 +335,9 @@ ATTRS{idProduct}=="0204", ATTRS{idVendor}=="0d28", ENV{ID_MM_DEVICE_IGNORE}="1",
   };
   systemd.services.xmrig.enable = false; # i start and stop this when i please
 
+  # let users have their cron
+  services.cron.enable = true;
+
   # mullvad vpn
   services.mullvad-vpn.enable = true;
 
