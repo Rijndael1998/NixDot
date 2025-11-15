@@ -17,5 +17,5 @@
   unstable.digikam
   tor-browser
   parallel
-  cameractrlsgtk4
+  cameractrls-gtk4
 ]
