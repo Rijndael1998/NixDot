@@ -108,7 +108,7 @@ in
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
-  environment.plasma6.excludePackages = [ pkgs.kdePackages.dolphin ]; # we will get this from latest
+  # environment.plasma6.excludePackages = [ pkgs.kdePackages.dolphin ]; # we will get this from latest
   programs.kdeconnect.enable = true;
 
   # Configure keymap in X11
