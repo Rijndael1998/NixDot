@@ -482,7 +482,7 @@ in
     enable = true;
     host = "0.0.0.0";
     openFirewall = true;
-    acceleration = true; # should have gpu now
+    acceleration = "rocm"; # should have gpu now
   };
 
   # services.open-webui = {
