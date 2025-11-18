@@ -1,1 +1,1 @@
-{} : "TrustyClient"
+{} : "TrustyServer"
