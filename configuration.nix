@@ -378,14 +378,6 @@ in
           proxyURL = "http://localhost/";
           key = "rijn.dev";
         }
-        {
-          domain = "xoa.rijn.dev";
-          proxyURL = "https://xoa.lan/";
-          extraLoc = ''
-            proxy_ssl_verify off;
-          '';
-          key = "rijn.dev";
-        }
         { # rijn.pl
           domain = "rijn.pl";
           proxyURL = websiteNeoURL;
@@ -396,17 +388,10 @@ in
     ++
     (map
       (import ./lambdas/nginx/reverse_with_headers.nix) [
-        {
-          domain = "xoa.baldy.ga";
-          proxyURL = "https://xoa.lan/";
-          extraLoc = ''
-            proxy_ssl_verify off;
-          '';
-        }
-        {
-          domain = "matilda-gifts.shop";
-          proxyURL = "http://portainer.lan:8080/";
-        }
+        # {
+        #   domain = "matilda-gifts.shop";
+        #   proxyURL = "http://portainer.lan:8080/";
+        # }
       ]
     )
     ++
@@ -458,26 +443,28 @@ in
     };
   };
 
-  systemd.services.matilda = {
-    enable = true;
-    after = [ "network.target" "nginx.service" ];
-    wantedBy = [ "multi-user.target" ];
-    description = "Matilda Gifts Shop docker";
+  # removing this in favor of another better thing later
 
-    path = with pkgs; [ docker ];
-    serviceConfig = {
-      User = "website";
-      Type = "simple";
-      WorkingDirectory = "/etc/nixos/websites/matilda-gifts.shop/";
-      ExecStart = ''${pkgs.bash}/bin/docker-compose up'';
-    };
-  };
+  # systemd.services.matilda = {
+  #   enable = true;
+  #   after = [ "network.target" "nginx.service" ];
+  #   wantedBy = [ "multi-user.target" ];
+  #   description = "Matilda Gifts Shop docker";
+
+  #   path = with pkgs; [ docker ];
+  #   serviceConfig = {
+  #     User = "website";
+  #     Type = "simple";
+  #     WorkingDirectory = "/etc/nixos/websites/matilda-gifts.shop/";
+  #     ExecStart = ''${pkgs.bash}/bin/docker-compose up'';
+  #   };
+  # };
 
   # mysql
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
-  };
+  # services.mysql = {
+  #   enable = true;
+  #   package = pkgs.mariadb;
+  # };
 
   # asf
   services.archisteamfarm.enable = true;
@@ -498,7 +485,7 @@ in
     enable = true;
     host = "0.0.0.0";
     openFirewall = true;
-    acceleration = false; # no gpu :(
+    acceleration = true; # should have gpu now
   };
 
   # services.open-webui = {
