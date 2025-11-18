@@ -49,8 +49,7 @@ in
 
       ContactInfo = "c3ypt1c@gmail.com";
 
-      # HashedControlPassword 16:9958340DF0B50ED0606F3EA86CE7C4B6D40B1991ED01A26CD92C8358A4
-      ORPort = 25565;
+      ORPort = 25567;
       DirPort = 25566;
       ControlPort = [ { port = 9051; } ];
 
