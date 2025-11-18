@@ -53,8 +53,8 @@ in
       DirPort = 25566;
       ControlPort = [ { port = 9051; } ];
 
-      RelayBandwidthRate = "25000 KBytes";
-      RelayBandwidthBurst = "25000 KBytes";
+      RelayBandwidthRate = "35000 KBytes";
+      RelayBandwidthBurst = "35000 KBytes";
     };
     
     relay = {
