@@ -145,9 +145,6 @@ in
   };
   users.groups.website = {};
 
-  # guest tools
-  services.xe-guest-utilities.enable = true;
-
   # docker
   virtualisation.docker = {
     enable = true;
