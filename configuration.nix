@@ -58,7 +58,7 @@ in
     };
     
     relay = {
-      enable = false;
+      enable = true;
       role = "relay";
     };
   };
