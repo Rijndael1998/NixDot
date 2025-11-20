@@ -353,6 +353,7 @@ in
       (import ./lambdas/nginx/reverse.nix) [
         # home assistant
         { proxyURL = "http://homeassistant.lan:8123/"; domain = "ha.baldy.ga"; }
+        { proxyURL = "http://homeassistant.lan:1242/"; domain = "asf.baldy.ga"; }
 
         # website neo
         { proxyURL = websiteNeoURL; domain = "baldy.ga"; }
@@ -365,6 +366,11 @@ in
     ++
     (map
       (import ./lambdas/nginx/reverse_with_ssl.nix) [
+        # {
+        #   domain = "asf.rijn.dev";
+        #   proxyURL = "http://localhost:1242/";
+        #   key = "rijn.dev";
+        # }
         # {
         #   domain = "rijn.dev";
         #   proxyURL = websiteNeoURL;
