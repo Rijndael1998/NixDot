@@ -353,7 +353,7 @@ in
       (import ./lambdas/nginx/reverse.nix) [
         # home assistant
         { proxyURL = "http://homeassistant.lan:8123/"; domain = "ha.baldy.ga"; }
-        { proxyURL = "http://homeassistant.lan:1242/"; domain = "asf.baldy.ga"; }
+        { proxyURL = "http://localhost:1242/"; domain = "asf.baldy.ga"; }
 
         # website neo
         { proxyURL = websiteNeoURL; domain = "baldy.ga"; }
