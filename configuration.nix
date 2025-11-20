@@ -366,26 +366,26 @@ in
     ++
     (map
       (import ./lambdas/nginx/reverse_with_ssl.nix) [
-        # {
-        #   domain = "asf.rijn.dev";
-        #   proxyURL = "http://localhost:1242/";
-        #   key = "rijn.dev";
-        # }
-        # {
-        #   domain = "rijn.dev";
-        #   proxyURL = websiteNeoURL;
-        #   key = "rijn.dev";
-        # }
-        # {
-        #   domain = "html.rijn.dev";
-        #   proxyURL = "http://localhost/";
-        #   key = "rijn.dev";
-        # }
-        # { # rijn.pl
-        #   domain = "rijn.pl";
-        #   proxyURL = websiteNeoURL;
-        #   key = "rijn.pl";
-        # }
+        { # rijn.dev
+          domain = "rijn.dev";
+          proxyURL = websiteNeoURL;
+          key = "rijn.dev";
+        }
+        {
+          domain = "html.rijn.dev";
+          proxyURL = "http://localhost/";
+          key = "rijn.dev";
+        }
+        {
+          domain = "asf.rijn.dev";
+          proxyURL = "http://localhost:1242/";
+          key = "rijn.dev";
+        }
+        { # rijn.pl
+          domain = "rijn.pl";
+          proxyURL = websiteNeoURL;
+          key = "rijn.pl";
+        }
       ]
     )
     ++
