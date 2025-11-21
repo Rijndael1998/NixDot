@@ -372,6 +372,11 @@ in
           key = "rijn.dev";
         }
         {
+          domain = "www.rijn.dev";
+          proxyURL = websiteNeoURL;
+          key = "rijn.dev";
+        }
+        {
           domain = "html.rijn.dev";
           proxyURL = "http://localhost/";
           key = "rijn.dev";
@@ -383,6 +388,11 @@ in
         }
         { # rijn.pl
           domain = "rijn.pl";
+          proxyURL = websiteNeoURL;
+          key = "rijn.pl";
+        }
+        {
+          domain = "www.rijn.pl";
           proxyURL = websiteNeoURL;
           key = "rijn.pl";
         }
