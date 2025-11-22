@@ -47,4 +47,7 @@
 
   # voice
   easyeffects
+
+  # pi
+  unstable.rpi-imager
 ]
