@@ -6,8 +6,9 @@
       wlrobs
       obs-backgroundremoval
       obs-pipewire-audio-capture
-      obs-vaapi
-      obs-3d-effect
+      obs-vaapi #optional AMD hardware acceleration
+      obs-gstreamer
+      obs-vkcapture
     ];
   })
   pkgs.gimp

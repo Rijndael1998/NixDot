@@ -35,6 +35,10 @@ in
   # dvb/tv
   hardware.rtl-sdr.enable = true;
 
+  # obs camera support
+  programs.obs-studio.enableVirtualCamera = true;
+
+
   programs.nix-ld = {
     enable = true;
     package = pkgs.nix-ld;
